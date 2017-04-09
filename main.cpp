@@ -5,12 +5,14 @@
 #include <limits>
 #include "globals.h"
 
+using namespace std;
+
 void readParameters(const std::string &parFilename = "nofile");
 
 int main(int argc, char* argv[]){
     argc > 1 ? readParameters(argv[1]) : readParameters();
-
-
+    cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl << mutRate << endl << mutRateGen1
+         << endl << mutRateGen2 << endl << endl << mutStdDev << endl << mutStdDevGen1 << mutStdDevGen2 << endl;
 
 };
 
@@ -29,7 +31,9 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
         std::string parId;
         ifs >> parId;
         if(ifs.good()) {
-            if (parId == "Population_Size") {
+            if (parId == "Seed") {
+                ifs >> seed;
+            } else if (parId == "Population_Size") {
                 ifs >> popSize;
             } else if (parId == "Intrinsic_Death_Rate") {
                 ifs >> intDeathRate;

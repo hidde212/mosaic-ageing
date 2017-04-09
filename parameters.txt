@@ -7,6 +7,7 @@ Intrinsic_Death_Rate    0.5     // Chance to die (lower is higher survivability)
 Extrinsic_Death_Rate    0.01    // Fraction individuals who die each timestep, extrinsic death
 Maximum_Offspring       3.0     // Maximum amount of generation allowed per simulation (f
 Maximum_Generations     15000   // Max number of offspring allowed per individual (integer)
+//Seed                  1234    // Uncomment to run with preset seed.
 
 //
 //Mutation parameters; if setting mutation per gene, uncomment and comment general mutation rate.

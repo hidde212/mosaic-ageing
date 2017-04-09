@@ -2,11 +2,12 @@
 #define PROJECT_FAST_GLOBALS_H
 
 //Global variables
-extern unsigned long popSize;		// (Initial) generation size
-extern double intDeathRate;		    // Chance to die (lower is higher survivability); intrinsic death rate.
-extern double extDeathRate;			// Fraction individuals who die each timestep, extrinsic death
-extern int maxGens;					// Maximum amount of generation allowed per simulation
-extern double maxOffspring;			// Max nr. of offspring allowed per indvidual
+extern unsigned long popSize;	// (Initial) generation size
+extern double intDeathRate;		// Chance to die (lower is higher survivability); intrinsic death rate.
+extern double extDeathRate;		// Fraction individuals who die each timestep, extrinsic death
+extern int maxGens;				// Maximum amount of generation allowed per simulation
+extern double maxOffspring;		// Max nr. of offspring allowed per indvidual
+extern double seed;             // Seed.
 //extern double alfa;					// Dependency resources invested in offspring <-> actual offspring
 //extern double beta1;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 1
 //extern double beta2;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 2
