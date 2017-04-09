@@ -1,0 +1,25 @@
+//
+//General Parameters
+//
+
+Population_Size         5000    // (Initial) generation size
+Intrinsic_Death_Rate    0.5     // Chance to die (lower is higher survivability); intrinsic death rate.
+Extrinsic_Death_Rate    0.01    // Fraction individuals who die each timestep, extrinsic death
+Maximum_Offspring       3.0     // Maximum amount of generation allowed per simulation (f
+Maximum_Generations     15000   // Max number of offspring allowed per individual (integer)
+
+//
+//Mutation parameters; if setting mutation per gene, uncomment and comment general mutation rate.
+//
+
+Mutation_Rate           0.01    // Rate of mutation (0.01 = 1% of population has chance on mutation)
+//Mutation_Rate_Gen1    0.01    // Rate of mutation for gen 1
+//Mutation_Rate_Gen2    0.01    // Rate of mutation for gen 2
+//Mutation_Rate_Gen3    0.05    // Rate of mutation for gen 3
+//Mutation_Rate_Gen4    0.05    // Rate of mutation for gen 4
+
+Mutation_StdDev         0.5     // Standard deviation for mutation
+//Mutation_StdDev1      0.5     // Standard deviation for mutation in gen 1
+//Mutation_StdDev2      0.5     // Standard deviation for mutation in gen 2
+//Mutation_StdDev3      0.5     // Standard deviation for mutation in gen 3
+//Mutation_StdDev4      0.5     // Standard deviation for mutation in gen 4
