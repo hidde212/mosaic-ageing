@@ -1,5 +1,5 @@
-#ifndef PROJECT_FAST_GLOBALS_H
-#define PROJECT_FAST_GLOBALS_H
+#ifndef MOSAIC_AGEING_GLOBALS_H
+#define MOSAIC_AGEING_GLOBALS_H
 
 //Global variables
 extern unsigned long popSize;	// (Initial) generation size
@@ -7,7 +7,7 @@ extern double intDeathRate;		// Chance to die (lower is higher survivability); i
 extern double extDeathRate;		// Fraction individuals who die each timestep, extrinsic death
 extern int maxGens;				// Maximum amount of generation allowed per simulation
 extern double maxOffspring;		// Max nr. of offspring allowed per indvidual
-extern double seed;             // Seed.
+extern int seed;             // Seed.
 //extern double alfa;					// Dependency resources invested in offspring <-> actual offspring
 //extern double beta1;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 1
 //extern double beta2;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 2
@@ -36,4 +36,4 @@ extern double mutStdDevGen2;    // Standard deviation for mutation in gen 2
 extern double mutStdDevGen3;    // Standard deviation for mutation in gen 3
 extern double mutStdDevGen4;    // Standard deviation for mutation in gen 4
 
-#endif //PROJECT_FAST_GLOBALS_H
+#endif //MOSAIC_AGEING_GLOBALS_H

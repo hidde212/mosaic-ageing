@@ -4,16 +4,25 @@
 #include <iostream>
 #include <limits>
 #include "globals.h"
+#include "randomnumbers.h"
 
 using namespace std;
 
 void readParameters(const std::string &parFilename = "nofile");
 
 int main(int argc, char* argv[]){
-    argc > 1 ? readParameters(argv[1]) : readParameters();
-    cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl << mutRate << endl << mutRateGen1
-         << endl << mutRateGen2 << endl << endl << mutStdDev << endl << mutStdDevGen1 << mutStdDevGen2 << endl;
+    try {
+        randomize();
+        argc > 1 ? readParameters(argv[1]) : readParameters();
+        cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl << mutRate << endl
+             << mutRateGen1
+             << endl << mutRateGen2 << endl << endl << mutStdDev << endl << mutStdDevGen1 << mutStdDevGen2 << endl;
+    }
 
+    catch (std::exception &error) {
+        std::cerr << error.what();
+        exit(EXIT_FAILURE);
+    }
 };
 
 
