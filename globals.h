@@ -8,7 +8,7 @@ extern double extDeathRate;		// Fraction individuals who die each timestep, extr
 extern int maxGens;				// Maximum amount of generation allowed per simulation
 extern double maxOffspring;		// Max nr. of offspring allowed per indvidual
 extern int seed;				// Seed.
-//extern double alfa;					// Dependency resources invested in offspring <-> actual offspring
+extern double alfa;					// Dependency resources invested in offspring <-> actual offspring
 //extern double beta1;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 1
 //extern double beta2;				// Factor (steepness) in Gompertz's law of mortality for damage of trait 2
 //extern double rho1;                 // Factor (y-axis intersect) in Gompertz's law of mortality for damage of trait 1

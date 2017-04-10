@@ -52,6 +52,8 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                     ifs >> maxOffspring;
                 } else if (parId == "Maximum_Generations") {
                     ifs >> maxGens;
+				} else if (parId == "Alfa") {
+					ifs >> alfa;
                 } else if (parId == "Mutation_Rate") {
                     ifs >> mutRate;
                 } else if (parId == "Mutation_Rate1") {
