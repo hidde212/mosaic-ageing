@@ -13,7 +13,7 @@ long randomize() {
         std::cout << "Used seed: " << seeder << std::endl;
         rng.seed(seeder);
         seed = seeder;
-    }
+	} return seed;
 }
 
 // random integer {0,...,n} (including n)

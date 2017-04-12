@@ -77,9 +77,11 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                 } else if (!parId.find("//")) {
                     ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 } else {
-                    throw std::logic_error("Unknown parameter in parameter file...");
+					throw std::logic_error("Unknown parameter in parameter file...");
                 }
             } else break;
         }
     }
+	cout << "Parameters: " << endl << "Population size: " << popSize << endl << "Intrinsic death rate: " << intDeathRate << endl << "Extrinsic deat rate: " << extDeathRate << endl
+		<< "Maximum offspring per ind.: " << maxOffspring << endl << "Maximum amount of generations: " << maxGens << endl << endl;
 };
