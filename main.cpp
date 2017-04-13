@@ -27,6 +27,8 @@ int main(int argc, char* argv[]){
 
 
 
+
+
 void readParameters(const std::string &parFileName /*= "nofile"*/){
     if (parFileName != "nofile") {
         std::ifstream ifs(parFileName.c_str());
@@ -54,6 +56,26 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                     ifs >> maxGens;
 				} else if (parId == "Alfa") {
 					ifs >> alfa;
+				} else if (parId == "Gene_Mean") {
+					ifs >> genMean;				
+				} else if (parId == "Gene1_Mean") {
+					ifs >> gen1Mean;
+				} else if (parId == "Gene2_Mean") {
+					ifs >> gen2Mean;
+				} else if (parId == "Gene3_Mean") {
+					ifs >> gen3Mean;
+				} else if (parId == "Gene4_Mean") {
+					ifs >> gen4Mean;
+				} else if (parId == "Gene_StdDev") {
+					ifs >> genStdDev;
+				} else if (parId == "Gene1_StdDev") {
+					ifs >> gen1StdDev;
+				} else if (parId == "Gene2_StdDev") {
+					ifs >> gen2StdDev;
+				} else if (parId == "Gene3_StdDev") {
+					ifs >> gen3StdDev;
+				} else if (parId == "Gene4_StdDev") {
+					ifs >> gen4StdDev;
                 } else if (parId == "Mutation_Rate") {
                     ifs >> mutRate;
                 } else if (parId == "Mutation_Rate1") {

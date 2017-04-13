@@ -15,13 +15,18 @@ double alfa = 0.4;						// Conversion rate for dependency resources invested in 
 //double phi = 0.33;                      // Steepness of linear mortality curve
 //double baseDamage = 0.1;                // Standard amount of damage added per timestep before allocation of repair/offspring resources
 //
-//double gen1Mean = 0.5;					// Mean for constructing gene 1 from normal distribution
-//double gen1StdDev = 0.05;				// Standard deviation for constructing genotype 1 from normal distribution
-//double gen2Mean = 0.0;					// Mean for constructing gene 2 from normal distribution
-//double gen2StdDev = 0.1;				// Standard deviation for constructing genotype 2 from normal distribution
-//double gen3Mean = 0.0;					// Mean for constructing gene 3 from normal distribution
-//double gen3StdDev = 0.1;				// Standard deviation for constructing genotype 3 from normal distribution
-//
+
+double genMean = 0.0;				// Mean for constructing all genes from normal distribution
+double genStdDev = 1.0;				// Standard deviation for constructing all genotypes from normal distribution
+
+double gen1Mean = genMean;			// Mean for constructing gene 1 from normal distribution
+double gen1StdDev = genStdDev;		// Standard deviation for constructing genotype 1 from normal distribution
+double gen2Mean = genMean;			// Mean for constructing gene 2 from normal distribution
+double gen2StdDev = genStdDev;		// Standard deviation for constructing genotype 2 from normal distribution
+double gen3Mean = genMean;			// Mean for constructing gene 3 from normal distribution
+double gen3StdDev = genStdDev;		// Standard deviation for constructing genotype 3 from normal distribution
+double gen4Mean = genMean;			// Mean for constructing gene 4 from normal distribution
+double gen4StdDev = genStdDev;		// Standard deviation for constructing genotype 4 from normal distribution
 
 double mutRate = 0.01;              // Rate of mutation (0.01 = 1% of population has chance on mutation)
 double mutRateGen1 = mutRate;       // Rate of mutation for gen 1

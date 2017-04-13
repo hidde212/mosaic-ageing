@@ -10,17 +10,33 @@ Maximum_Generations     15000   // Max number of offspring allowed per individua
 //Seed                  1234    // Uncomment to run with preset seed.
 
 //
-//Mutation parameters; if setting mutation per gene, uncomment and comment general mutation rate.
+//Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
+// if setting distribution per gene, uncomment per gene and comment general mutation rate.	
+//
+
+Gene_Mean				0.0		// Mean of norm. dist.
+Gene_StdDev				1.0		// Standard Deviation of norm. dist.
+//Gene1_Mean			0.0		// Mean of norm. dist. of gene 1
+//Gene1_StdDev			1.0		// Standard Deviation of norm. dist. of gene 1
+//Gene2_Mean			0.0		// Mean of norm. dist. of gene 2
+//Gene2_StdDev			1.0		// Standard Deviation of norm. dist. of gene 2
+//Gene3_Mean			0.0		// Mean of norm. dist. of gene 3
+//Gene3_StdDev			1.0		// Standard Deviation of norm. dist. of gene 3
+//Gene4_Mean			0.0		// Mean of norm. dist. of gene 4
+//Gene4_StdDev			1.0		// Standard Deviation of norm. dist. of gene 4
+
+//
+//Mutation parameters; if setting mutation per gene, uncomment per gene and comment general mutation rate.
 //
 
 Mutation_Rate           0.01    // Rate of mutation (0.01 = 1% of population has chance on mutation)
-//Mutation_Rate_Gen1    0.01    // Rate of mutation for gen 1
-//Mutation_Rate_Gen2    0.01    // Rate of mutation for gen 2
-//Mutation_Rate_Gen3    0.05    // Rate of mutation for gen 3
-//Mutation_Rate_Gen4    0.05    // Rate of mutation for gen 4
+//Mutation_Rate_1		0.01    // Rate of mutation for gene 1
+//Mutation_Rate_2		0.01    // Rate of mutation for gene 2
+//Mutation_Rate_3		0.05    // Rate of mutation for gene 3
+//Mutation_Rate_4		0.05    // Rate of mutation for gene 4
 
 Mutation_StdDev         0.5     // Standard deviation for mutation
-//Mutation_StdDev1      0.5     // Standard deviation for mutation in gen 1
-//Mutation_StdDev2      0.5     // Standard deviation for mutation in gen 2
-//Mutation_StdDev3      0.5     // Standard deviation for mutation in gen 3
-//Mutation_StdDev4      0.5     // Standard deviation for mutation in gen 4
+//Mutation_StdDev1      0.5     // Standard deviation for mutation in gene 1
+//Mutation_StdDev2      0.5     // Standard deviation for mutation in gene 2
+//Mutation_StdDev3      0.5     // Standard deviation for mutation in gene 3
+//Mutation_StdDev4      0.5     // Standard deviation for mutation in gene 4

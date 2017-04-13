@@ -1,6 +1,3 @@
-//
-// Created by hidde on 4/9/17.
-//
 
 #ifndef MOSAIC_AGEING_RANDOMNUMBERS_H
 #define MOSAIC_AGEING_RANDOMNUMBERS_H

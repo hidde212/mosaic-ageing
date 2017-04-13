@@ -17,12 +17,18 @@ extern double alfa;					// Dependency resources invested in offspring <-> actual
 //extern double baseDamage;           // Standard amount of damage added per timestep before allocation of repair/offspring resources
 //
 //
-//extern double gen1Mean;				// Mean for constructing genotype 1 from normal distribution
-//extern double gen1StdDev;			// Standard deviation for constructing genotype 1 from normal distribution
-//extern double gen2Mean;				// Mean for constructing genotype 2 from normal distribution
-//extern double gen2StdDev;			// Standard deviation for constructing genotype 2 from normal distribution
-//extern double gen3Mean;             // Mean for constructing genotype 3 from normal distribution
-//extern double gen3StdDev;           // Standard deviation for constructing genotype 3 from normal distribution
+
+extern double genMean;			// Mean for constructing all genes from normal distribution
+extern double genStdDev;		// Standard deviation for constructing all genotypes from normal distribution
+
+extern double gen1Mean;			// Mean for constructing genotype 1 from normal distribution
+extern double gen1StdDev;		// Standard deviation for constructing genotype 1 from normal distribution
+extern double gen2Mean;			// Mean for constructing genotype 2 from normal distribution
+extern double gen2StdDev;		// Standard deviation for constructing genotype 2 from normal distribution
+extern double gen3Mean;         // Mean for constructing genotype 3 from normal distribution
+extern double gen3StdDev;       // Standard deviation for constructing genotype 3 from normal distribution
+extern double gen4Mean;         // Mean for constructing genotype 4 from normal distribution
+extern double gen4StdDev;       // Standard deviation for constructing genotype 4 from normal distribution
 
 extern double mutRate;          // Rate of mutation (0.01 = 1% of population has chance on mutation)
 extern double mutRateGen1;      // Rate of mutation for gen 1
