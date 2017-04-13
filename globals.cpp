@@ -29,13 +29,13 @@ double gen4Mean = genMean;			// Mean for constructing gene 4 from normal distrib
 double gen4StdDev = genStdDev;		// Standard deviation for constructing genotype 4 from normal distribution
 
 double mutRate = 0.01;              // Rate of mutation (0.01 = 1% of population has chance on mutation)
-double mutRateGen1 = mutRate;       // Rate of mutation for gen 1
-double mutRateGen2 = mutRate;       // Rate of mutation for gen 2
-double mutRateGen3 = mutRate;       // Rate of mutation for gen 3
-double mutRateGen4 = mutRate;       // Rate of mutation for gen 4
+double mutRateGene1 = mutRate;       // Rate of mutation for gen 1
+double mutRateGene2 = mutRate;       // Rate of mutation for gen 2
+double mutRateGene3 = mutRate;       // Rate of mutation for gen 3
+double mutRateGene4 = mutRate;       // Rate of mutation for gen 4
 
 double mutStdDev = 0.5;             // Standard deviation for mutation
-double mutStdDevGen1 = mutStdDev;   // Standard deviation for mutation in gen 1
-double mutStdDevGen2 = mutStdDev;   // Standard deviation for mutation in gen 2
-double mutStdDevGen3 = mutStdDev;   // Standard deviation for mutation in gen 3
-double mutStdDevGen4 = mutStdDev;   // Standard deviation for mutation in gen 4
+double mutStdDevGene1 = mutStdDev;   // Standard deviation for mutation in gen 1
+double mutStdDevGene2 = mutStdDev;   // Standard deviation for mutation in gen 2
+double mutStdDevGene3 = mutStdDev;   // Standard deviation for mutation in gen 3
+double mutStdDevGene4 = mutStdDev;   // Standard deviation for mutation in gen 4

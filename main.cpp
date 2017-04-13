@@ -15,8 +15,8 @@ int main(int argc, char* argv[]){
         randomize();
         argc > 1 ? readParameters(argv[1]) : readParameters();
         cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl << mutRate << endl
-             << mutRateGen1 << endl << mutRateGen2 << endl << endl << mutStdDev << endl << mutStdDevGen1 << endl
-             << mutStdDevGen2 << endl;
+             << mutRateGene1 << endl << mutRateGene2 << endl << endl << mutStdDev << endl << mutStdDevGene1 << endl
+             << mutStdDevGene2 << endl;
     }
 
     catch (std::exception &error) {
@@ -79,23 +79,23 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                 } else if (parId == "Mutation_Rate") {
                     ifs >> mutRate;
                 } else if (parId == "Mutation_Rate1") {
-                    ifs >> mutRateGen1;
+                    ifs >> mutRateGene1;
                 } else if (parId == "Mutation_Rate2") {
-                    ifs >> mutRateGen2;
+                    ifs >> mutRateGene2;
                 } else if (parId == "Mutation_Rate3") {
-                    ifs >> mutRateGen3;
+                    ifs >> mutRateGene3;
                 } else if (parId == "Mutation_Rate4") {
-                    ifs >> mutRateGen4;
+                    ifs >> mutRateGene4;
                 } else if (parId == "Mutation_StdDev") {
                     ifs >> mutStdDev;
                 } else if (parId == "Mutation_StdDev") {
-                    ifs >> mutStdDevGen1;
+                    ifs >> mutStdDevGene1;
                 } else if (parId == "Mutation_StdDev") {
-                    ifs >> mutStdDevGen2;
+                    ifs >> mutStdDevGene2;
                 } else if (parId == "Mutation_StdDev") {
-                    ifs >> mutStdDevGen3;
+                    ifs >> mutStdDevGene3;
                 } else if (parId == "Mutation_StdDev") {
-                    ifs >> mutStdDevGen4;
+                    ifs >> mutStdDevGene4;
                 } else if (!parId.find("//")) {
                     ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 } else {

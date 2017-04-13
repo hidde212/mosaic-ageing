@@ -22,3 +22,29 @@ void individual::setGene3(const double &setManual /* = 0 */) {	// If default arg
 void individual::setGene4(const double &setManual /* = 0 */) {	// If default argument is given (setManual), gene value equals this argument. Else, value taken from normal distribution
 	setManual ? gene4 = setManual : gene4 = normal(gen4Mean, gen4StdDev);
 }
+
+
+void individual::mutateGene1() { // Add mutation to gen 2. No restriction to gene value
+	if (ru() < mutRateGene1) {
+		double mutation = normal(0, mutStdDevGene1);
+		gene1 += mutation;
+	}
+}
+void individual::mutateGene2() { // Add mutation to gen 2. No restriction to gene value
+	if (ru() < mutRateGene2) {
+		double mutation = normal(0, mutStdDevGene2);
+		gene2 += mutation;
+	}
+}
+void individual::mutateGene3() { // Add mutation to gen 2. No restriction to gene value
+	if (ru() < mutRateGene3) {
+		double mutation = normal(0, mutStdDevGene3);
+		gene3 += mutation;
+	}
+}
+void individual::mutateGene4() { // Add mutation to gen 2. No restriction to gene value
+	if (ru() < mutRateGene4) {
+		double mutation = normal(0, mutStdDevGene4);
+		gene4 += mutation;
+	}
+}

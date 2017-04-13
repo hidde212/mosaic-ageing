@@ -31,15 +31,15 @@ extern double gen4Mean;         // Mean for constructing genotype 4 from normal 
 extern double gen4StdDev;       // Standard deviation for constructing genotype 4 from normal distribution
 
 extern double mutRate;          // Rate of mutation (0.01 = 1% of population has chance on mutation)
-extern double mutRateGen1;      // Rate of mutation for gen 1
-extern double mutRateGen2;      // Rate of mutation for gen 2
-extern double mutRateGen3;      // Rate of mutation for gen 3
-extern double mutRateGen4;      // Rate of mutation for gen 4
+extern double mutRateGene1;      // Rate of mutation for gen 1
+extern double mutRateGene2;      // Rate of mutation for gen 2
+extern double mutRateGene3;      // Rate of mutation for gen 3
+extern double mutRateGene4;      // Rate of mutation for gen 4
 
 extern double mutStdDev;        // Standard deviation for mutation
-extern double mutStdDevGen1;    // Standard deviation for mutation in gen 1
-extern double mutStdDevGen2;    // Standard deviation for mutation in gen 2
-extern double mutStdDevGen3;    // Standard deviation for mutation in gen 3
-extern double mutStdDevGen4;    // Standard deviation for mutation in gen 4
+extern double mutStdDevGene1;    // Standard deviation for mutation in gen 1
+extern double mutStdDevGene2;    // Standard deviation for mutation in gen 2
+extern double mutStdDevGene3;    // Standard deviation for mutation in gen 3
+extern double mutStdDevGene4;    // Standard deviation for mutation in gen 4
 
 #endif //MOSAIC_AGEING_GLOBALS_H
