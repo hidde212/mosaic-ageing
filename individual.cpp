@@ -24,7 +24,7 @@ void individual::setGene4(const double &setManual /* = 0 */) {	// If default arg
 }
 
 
-void individual::mutateGene1() { // Add mutation to gen 2. No restriction to gene value
+void individual::mutateGene1() { // Add mutation to gen 1. No restriction to gene value
 	if (ru() < mutRateGene1) {
 		double mutation = normal(0, mutStdDevGene1);
 		gene1 += mutation;
@@ -36,13 +36,13 @@ void individual::mutateGene2() { // Add mutation to gen 2. No restriction to gen
 		gene2 += mutation;
 	}
 }
-void individual::mutateGene3() { // Add mutation to gen 2. No restriction to gene value
+void individual::mutateGene3() { // Add mutation to gen 3. No restriction to gene value
 	if (ru() < mutRateGene3) {
 		double mutation = normal(0, mutStdDevGene3);
 		gene3 += mutation;
 	}
 }
-void individual::mutateGene4() { // Add mutation to gen 2. No restriction to gene value
+void individual::mutateGene4() { // Add mutation to gen 4. No restriction to gene value
 	if (ru() < mutRateGene4) {
 		double mutation = normal(0, mutStdDevGene4);
 		gene4 += mutation;
