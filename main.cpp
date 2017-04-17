@@ -5,23 +5,51 @@
 #include <limits>
 #include "globals.h"
 #include "randomnumbers.h"
+#include "individual.h"
 
 using namespace std;
 
 void readParameters(const std::string &parFilename = "nofile");
+vector<individual> createCohort();
+void checkCohort();
 
 int main(int argc, char* argv[]){
     try {
-        randomize();
         argc > 1 ? readParameters(argv[1]) : readParameters();
+        randomize();
         cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl << mutRate << endl
              << mutRateGene1 << endl << mutRateGene2 << endl << endl << mutStdDev << endl << mutStdDevGene1 << endl
              << mutStdDevGene2 << endl;
+
+        checkCohort();
     }
 
     catch (std::exception &error) {
         std::cerr << error.what();
         exit(EXIT_FAILURE);
+    }
+};
+
+vector<individual> createCohort(){
+    vector<individual> vCohort(popSize);
+    for(size_t i = 0; i < vCohort.size(); ++i) {
+        individual Individual;
+        Individual.setGene1();
+        Individual.setGene2();
+        Individual.setGene3();
+        Individual.setGene4();
+        vCohort[i] = Individual;
+    }
+    return vCohort;
+};
+
+void checkCohort() {
+    ofstream checkValues("data.csv");
+    checkValues << "gene1," << "gene2," << "gene3," << "gene4" << endl;
+    vector<individual> vCohort = createCohort();
+    for(size_t i = 0; i < vCohort.size(); ++i){
+        checkValues << vCohort[i].getGene1() << "," << vCohort[i].getGene2() << "," << vCohort[i].getGene3() << ","
+                    << vCohort[i].getGene4() << "," << endl;
     }
 };
 
@@ -57,7 +85,7 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
 				} else if (parId == "Alfa") {
 					ifs >> alfa;
 				} else if (parId == "Gene_Mean") {
-					ifs >> genMean;				
+					ifs >> genMean;
 				} else if (parId == "Gene1_Mean") {
 					ifs >> gen1Mean;
 				} else if (parId == "Gene2_Mean") {
@@ -104,6 +132,8 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
             } else break;
         }
     }
-	cout << "Parameters: " << endl << "Population size: " << popSize << endl << "Intrinsic death rate: " << intDeathRate << endl << "Extrinsic deat rate: " << extDeathRate << endl
-		<< "Maximum offspring per ind.: " << maxOffspring << endl << "Maximum amount of generations: " << maxGens << endl << endl;
+	cout << "Parameters: " << endl << "Seed: " << seed << endl << endl << "Population size: " << popSize << endl
+         << "Intrinsic death rate: " << intDeathRate << endl << "Extrinsic death rate: " << extDeathRate << endl
+         << "Maximum offspring per ind.: " << maxOffspring << endl << "Maximum amount of generations: " << maxGens
+         << endl << endl;
 };

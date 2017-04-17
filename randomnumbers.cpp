@@ -10,7 +10,7 @@ long randomize() {
     if (seed == 0) {
         static std::random_device rd{};
         auto seeder = rd();
-        std::cout << "Used seed: " << seeder << std::endl;
+//        std::cout << "Used seed: " << seeder << std::endl;
         rng.seed(seeder);
         seed = seeder;
 	} return seed;

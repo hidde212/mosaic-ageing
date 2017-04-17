@@ -5,7 +5,12 @@
 
 individual::individual() {
 	age = 0;
+	lifetimeRS = 0.0;
+	alive = true;
+	damageTrait1 = damageTrait2 = 0.00001;
 }
+
+
 
 void individual::setGene1(const double &setManual /* = 0 */) {	// If default argument is given (setManual), gene value equals this argument. Else, value taken from normal distribution
 	setManual ? gene1 = setManual : gene1 = normal(gen1Mean, gen1StdDev);

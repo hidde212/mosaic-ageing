@@ -2,6 +2,9 @@
 #ifndef MOSAIC_AGEING_INDIVIDUAL_H
 #define MOSAIC_AGEING_INDIVIDUAL_H
 
+#include "globals.h"
+#include "randomnumbers.h"
+
 class individual {
 public:
 	individual();			// Constructor
@@ -15,8 +18,12 @@ public:
 	void mutateGene2();
 	void mutateGene3();
 	void mutateGene4();
-	
 
+	// Get functions:
+	double getGene1() { return gene1; };									// Return values of genes 1/2/3
+	double getGene2() { return gene2; };
+	double getGene3() { return gene3; };
+	double getGene4() { return gene4; };
 
 private:
 	int age;					// Current age of individual
@@ -24,14 +31,12 @@ private:
 	double damageTrait2;		// Damage in component 2 an inidivual has accumulated over lifetime
 	bool alive;					// Whether alive, or not. TRUE or FALSE value
 	int deathCause;
+	double lifetimeRS;			// Lifetime Reproductive Success; measure for fitness.
 
 	double gene1;				// Curve of function determining resources towards offspring
 	double gene2;				// Shift of function determining resources towards offspring
 	double gene3;				// Curve of function determining repair resources towards trait 1
 	double gene4;				// Shift of function determining repair resources towards trait 1
-
-	double repairResources;		// Fraction of resources being appointed to repair
-	double offspringResources;	// Fraction of resources used for reproduction
 };
 
 #endif //MOSAIC_AGEING_INDIVIDUAL_H
