@@ -82,7 +82,7 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                     ifs >> maxOffspring;
                 } else if (parId == "Maximum_Generations") {
                     ifs >> maxGens;
-				} else if (parId == "Alfa") {
+                } else if (parId == "Alfa") {
 					ifs >> alfa;
 				} else if (parId == "Gene_Mean") {
 					ifs >> genMean;
