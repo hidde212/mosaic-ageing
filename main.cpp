@@ -9,9 +9,17 @@
 
 using namespace std;
 
+//
+// Function declarations
+//
 void readParameters(const std::string &parFilename = "nofile");
 vector<individual> createCohort();
 void checkCohort();
+vector<individual> simulate(vector<individual> &vCohort);
+
+//
+// Main program
+//
 
 int main(int argc, char* argv[]){
     try {
@@ -30,6 +38,10 @@ int main(int argc, char* argv[]){
     }
 };
 
+
+//
+// Function definitions
+//
 vector<individual> createCohort(){
     vector<individual> vCohort(popSize);
     for(size_t i = 0; i < vCohort.size(); ++i) {
@@ -52,6 +64,51 @@ void checkCohort() {
                     << vCohort[i].getGene4() << "," << endl;
     }
 };
+
+void reproduce(vector<individual> &vGeneration, const double &alfa, const double &beta) {
+	// Reproduce all individuals, then replace dead individuals with newborns
+
+	vector<double> offspring(popSize);
+	vector<int> deadIndividuals;
+
+#pragma omp parallel for schedule(dynamic)
+	for (size_t i = 0; i < vGeneration.size(); ++i) {	// Determine number of offspring for each individual
+		double offspringResources = vGeneration[i].getOffspringResources();
+		double dOffspring = (maxOffspring * tmp) / (alfa + tmp);
+		if (dOffspring == 0)
+			dOffspring = 0.0001;
+		offspring[i] = dOffspring;
+	}
+
+	for (size_t i = 0; i < generation.size(); ++i) {	// Find dead sheep in generation, and store their position in the vector
+		if (!generation[i].isAlive())
+			deadSheep.push_back(i);
+	}
+
+	for (size_t j = 0; j < deadSheep.size(); ++j) {
+		int parent = rindex(offspring);					// Pick parent using weighted lottery
+
+		sheep Sheep;									// Create offspring, and give same gen1 and gen2 as parent..
+		Sheep.setGen1(generation[parent].getGen1());
+		Sheep.setGen2(generation[parent].getGen2());
+		Sheep.setGen3(generation[parent].getGen3());
+		Sheep.mutateGen1();							// .. and mutate possibly
+		Sheep.mutateGen2();
+		Sheep.mutateGen3();
+
+		generation[deadSheep[j]] = Sheep;				// Replace dead sheep with their offspring
+	}
+}
+
+vector<individual> simulate(vector<individual> &vCohort) {
+	for (size_t i = 0; i < maxGens; ++i) {
+#pragma omp parallel for ordered schedule(static,1)
+
+
+
+	}
+
+}; 
 
 
 
