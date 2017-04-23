@@ -2,44 +2,78 @@
 #ifndef MOSAIC_AGEING_INDIVIDUAL_H
 #define MOSAIC_AGEING_INDIVIDUAL_H
 
+#include <array>
 #include "globals.h"
 #include "randomnumbers.h"
 
-class individual {
-public:
-	individual();			// Constructor
+using genome = std::array<double, genesAmount>;
+using traits = std::array<double, traitsAmount>;
 
-	// Set functions:
-	void setRepairRes(const double repRes) { repairRes = repRes; };
-	void setGene1(const double &setManual = 0.0);	// Set genes 1/2/3/4. If argument is given, gene value equals this argument.
-	void setGene2(const double &setManual = 0.0);	// Else without argument, pulled from normal distribution with mean/stddev defined in globals.cpp
-	void setGene3(const double &setManual = 0.0);
-	void setGene4(const double &setManual = 0.0);
-	void mutateGene1();								// Add mutations to traits
-	void mutateGene2();
-	void mutateGene3();
-	void mutateGene4();
+// Individual class, including array of genes and array of traits 
+class Individual {
+	int age = 0;							// Current age of individual
+	bool alive = true;						// Whether alive or not.
+	int deathCause;							// Indication of death by which trait (1, 2) or extr. factors (0)
+	double lifetimeRS = 0.0;				// Lifetime Reproductive Success; measure for fitness.
+	//double repairRes;						// (Relative) amount of repair resources (max. = 1.0)
+	genome genes;							// Array of genes
+	traits traitDamages = { 0.01,0.01 };	// Array of all traits' damage
+
+public:
+	Individual() : genes(setGenes()) {}		// Default constructor setting genes from norm. dist.
+	Individual(const genome &parentGenes) : genes(parentGenes) {} // Constructor with genes of parent
+	~Individual() = default;				// Destructor
+
+	// Update and set functions:
+	void mutate();							// Mutate with parameters given
+	bool kill();							// Determine if individual is killed and return this
+	
+	genome setGenes();						// 
 
 	// Get functions:
-	double getRepRes() { return repairRes; };
-	double getGene1() { return gene1; };									// Return values of genes 1/2/3/4
-	double getGene2() { return gene2; };
-	double getGene3() { return gene3; };
-	double getGene4() { return gene4; };
+	genome getGenome() const { return genes; };			// Return values of genes 1/2/3/4
+	traits getDamages() const { return traitDamages; };	// Return trait damage values (array of two)
+	int getAge() const { return age; };					// Return age
+	double getLRS() const { return lifetimeRS; };		// Return lifetime reproductive success
+	int getDeathcause() const { return deathCause; };	// Return cause of death
 
-private:
-	int age;					// Current age of individual
-	double damageTrait1;		// Damage in component 1 an individual has accumulated over lifetime
-	double damageTrait2;		// Damage in component 2 an inidivual has accumulated over lifetime
-	bool alive;					// Whether alive, or not. TRUE or FALSE value
-	int deathCause;
-	double lifetimeRS;			// Lifetime Reproductive Success; measure for fitness.
-	double repairRes;			// (Relative) amount of repair resources (max. = 1.0)
 
-	double gene1;				// Curve of function determining resources towards offspring
-	double gene2;				// Shift of function determining resources towards offspring
-	double gene3;				// Curve of function determining repair resources towards trait 1
-	double gene4;				// Shift of function determining repair resources towards trait 1
+
 };
+
+inline genome Individual::setGenes() {
+	genome genetemp;
+	for (size_t i = 0; i < genes.size(); ++i) {
+		genetemp[i] = normal(genesMean[i], genesStdDev[i]);
+	}
+	return genetemp;
+};
+
+inline void Individual::mutate() {
+	for (size_t i = 0; i < genes.size(); ++i) {
+		if (ru() < mutRates[i]) {
+			genes[i] += normal(0, mutStdDevs[i]);
+		}
+	}
+}
+
+//Kill individual when ru() < damage (thus when damage > 1 always dead)
+inline bool Individual::kill() {
+	if (ru() < extDeathRate) {
+		alive = false;
+		deathCause = 0;
+	}
+	else if (ru() < traitDamages[0]) {
+		alive = false;
+		deathCause = 1;
+	}
+	else if (ru() < traitDamages[1]) {
+		alive = false;
+		deathCause = 2;
+	}
+	return alive;
+};
+
+
 
 #endif //MOSAIC_AGEING_INDIVIDUAL_H

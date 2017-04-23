@@ -1,41 +1,16 @@
 #include "globals.h"
 
 //Global variables
-unsigned long popSize = 15000;	    // (Initial) generation size
+unsigned popSize = 15000;	    // (Initial) generation size
 double intDeathRate = 0.5;		    // Chance to die (lower is higher survivability); intrinsic death rate.
 double extDeathRate = 0.01;		    // Fraction individuals who die each timestep, extrinsic death
 int maxGens = 5000;				    // Maximum amount of generation allowed per simulation
 double maxOffspring = 3.0;          // Max number of offspring allowed per individual
 int seed = 0;                       // Seed.
-double alfa = 1.0;					// variable determining impact of gene 1
-double beta = 1.0;					// variable determining impact of gene 2
-//double beta2 = 2.0;               		// Factor (steepness) in Gompertz's law of mortality for damage of trait 2
-//double rho1 = 5.0;                      // Factor (y-axis intersect) in Gompertz's law of mortality for damage of trait 1
-//double rho2 = 15.0;                     // Factor (y-axis intersect) in Gompertz's law of mortality for damage of trait 2
-//double phi = 0.33;                      // Steepness of linear mortality curve
-//double baseDamage = 0.1;                // Standard amount of damage added per timestep before allocation of repair/offspring resources
-//
+double alfa = 1.0;					// variable determining how much impact the total state (damage) has on offspring/repair resources
+double beta = 1.0;					// variable determining how much impact the damage ratio has on repair allocation
 
-double genMean = 0.0;				// Mean for constructing all genes from normal distribution
-double genStdDev = 1.0;				// Standard deviation for constructing all genotypes from normal distribution
-
-double gen1Mean = genMean;			// Mean for constructing gene 1 from normal distribution
-double gen1StdDev = genStdDev;		// Standard deviation for constructing genotype 1 from normal distribution
-double gen2Mean = genMean;			// Mean for constructing gene 2 from normal distribution
-double gen2StdDev = genStdDev;		// Standard deviation for constructing genotype 2 from normal distribution
-double gen3Mean = genMean;			// Mean for constructing gene 3 from normal distribution
-double gen3StdDev = genStdDev;		// Standard deviation for constructing genotype 3 from normal distribution
-double gen4Mean = genMean;			// Mean for constructing gene 4 from normal distribution
-double gen4StdDev = genStdDev;		// Standard deviation for constructing genotype 4 from normal distribution
-
-double mutRate = 0.01;              // Rate of mutation (0.01 = 1% of population has chance on mutation)
-double mutRateGene1 = mutRate;       // Rate of mutation for gen 1
-double mutRateGene2 = mutRate;       // Rate of mutation for gen 2
-double mutRateGene3 = mutRate;       // Rate of mutation for gen 3
-double mutRateGene4 = mutRate;       // Rate of mutation for gen 4
-
-double mutStdDev = 0.5;             // Standard deviation for mutation
-double mutStdDevGene1 = mutStdDev;   // Standard deviation for mutation in gen 1
-double mutStdDevGene2 = mutStdDev;   // Standard deviation for mutation in gen 2
-double mutStdDevGene3 = mutStdDev;   // Standard deviation for mutation in gen 3
-double mutStdDevGene4 = mutStdDev;   // Standard deviation for mutation in gen 4
+std::array<double, genesAmount> genesMean;		// Mean for constructing all genes from normal distribution
+std::array<double, genesAmount> genesStdDev;	// Standard deviation for constructing all genotypes from normal distribution
+std::array<double, genesAmount> mutRates;		// Rate of mutation (0.01 = 1% of population has chance on mutation)
+std::array<double, genesAmount> mutStdDevs;		// Rate of mutation (0.01 = 1% of population has chance on mutation)
