@@ -2,18 +2,16 @@
 #include <fstream>
 #include <stdexcept>
 #include <iostream>
-#include <limits>
-#include <ctime>
-#include <array>
+//#include <limits>
+//#include <ctime>
+//#include <array>
 #include "globals.h"
 #include "randomnumbers.h"
 #include "individual.h"
+#include "population.h"
 
 using namespace std;
 
-//
-// Function declarations
-//
 
 // Function to read from parameter file.
 void readParameters(const std::string &parFilename = "nofile");
@@ -21,7 +19,6 @@ void readParameters(const std::string &parFilename = "nofile");
 //
 // Main program
 //
-
 int main(int argc, char* argv[]){
     try {
         argc > 1 ? readParameters(argv[1]) : readParameters();
@@ -34,14 +31,21 @@ int main(int argc, char* argv[]){
 			cout << "Mutation gene " << i << " stddev: " << mutStdDevs[i] << endl;
 		}
 		randomize();
+		std::ofstream means_data("means.csv");
+
+		//For testing//
+		Population pop;
+		pop.advance();
+		pop.calcMeanStdDev();
+		pop.writeMean(means_data);
     }	
 
-    catch (std::exception &error) {
-        std::cerr << error.what();
+    catch (exception &error) {
+        cerr << error.what();
         exit(EXIT_FAILURE);
     }
 
-	system("pause");
+	//system("pause");
 	return 0;
 };
 
@@ -52,15 +56,15 @@ int main(int argc, char* argv[]){
 
 void readParameters(const std::string &parFileName /*= "nofile"*/){
     if (parFileName != "nofile") {
-        std::ifstream ifs(parFileName.c_str());
+        ifstream ifs(parFileName.c_str());
         if (!ifs.is_open()) {
-            throw std::runtime_error("Unable to open parameter file...");
+            throw runtime_error("Unable to open parameter file...");
         }
 
-        std::clog << "Reading parameters from " << parFileName << "\n";
+        clog << "Reading parameters from " << parFileName << "\n";
 
         while (ifs.is_open()) {
-            std::string parId;
+            string parId;
             ifs >> parId;
             if (ifs.good()) {
                 if (parId == "Seed") {
@@ -77,10 +81,12 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                     ifs >> maxGens;
 				} else if (parId == "Seed") {
 					ifs >> seed;
-				} else if (parId == "Alfa") {
-					ifs >> alfa;
+				} else if (parId == "Alpha") {
+					ifs >> alpha;
 				} else if (parId == "Beta") {
 					ifs >> beta;
+				} else if (parId == "Fec_Steepness") {
+					ifs >> f_c;
 				} else if (parId == "Gene1_Mean") {
 					ifs >> genesMean[0];
 				} else if (parId == "Gene2_Mean") {
@@ -116,7 +122,7 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                 } else if (!parId.find("//")) {
                     ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 } else {
-					throw std::logic_error("Unknown parameter in parameter file...");
+					throw logic_error("Unknown parameter in parameter file...");
                 }
             } else break;
         }
