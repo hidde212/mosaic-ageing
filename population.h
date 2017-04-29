@@ -9,10 +9,12 @@
 #include "globals.h"
 #include "individual.h"
 
+
+// Class containing vector of Individual class and functions acting on this
 class Population {
 	std::vector<Individual> cohort;
 	std::array<double, dataMeansAmount> means;
-	std::array<double, dataMeansAmount> std_devs;
+	std::array<double, dataMeansAmount> stdDevs;
 
 public:
 	Population() : cohort(popSize, Individual()) {};
@@ -21,8 +23,11 @@ public:
 	//Set functions
 	void advance();					// Calculate fecundity and damage and increase the latter ((parallel))
 									// Also kill, reproduce and mutate individuals
-	void calcMeanStdDev();
-	void writeMean(std::ofstream &meandataofs);				// Write data
+	void reproduceFromAll();		// Take new generation from all individuals (offspring before death)
+	void reproduceFromAlive();		// Take new generation from alive individuals
+
+	void calcMeanStdDev();									// Calculate statistics
+	void writeMeanStdDev(std::ofstream &meandataofs);		// Write data
 };
 
 
@@ -33,9 +38,18 @@ inline void Population::advance() {
 		ind.calcResources();
 		ind.kill();
 	}
-}
 
-// Calculate means and stddev of genes, damage, age and LRS. <<WIP>>
+	reproduceFromAlive();
+//	reproduceFromAll();
+
+	for (auto ind : cohort) if (!ind.getAge()) ind.mutate();
+//	for (auto ind : cohort) ind.mutate();
+
+
+};
+
+
+// Calculate means and stddev of genes, damage, age and LRS. <<WIP!!>>
 inline void Population::calcMeanStdDev() {
 	for (size_t i = 0; i < means.size(); ++i) means[i] = 0.0;
 	std::vector<std::vector<double> > mValues;
@@ -49,10 +63,23 @@ inline void Population::calcMeanStdDev() {
 		mValues.push_back(indData);
 	}
 
-}
+//	double g1_tot = g2_tot = g3_tot = g4_tot = d1_tot = d2_tot = age_tot = lrs_tot = 0.0;
+#pragma omp parallel for
+    for(size_t i = 0; i < mValues[0].size(); ++i) {
+		double total = mean = varTotal = 0.0;
+		for (auto& value : mValues[i]) total += value;
+		mean = total / mValues[i].size();
+		for (auto& value : mValues[i]) varTotal += pow((dev - mean), 2.0);
+		stdDevs[i] = sqrt(varTotal / mValues[i].size());
+
+
+	}
+
+
+};
 
 //Write means <<WIP>>
-inline void Population::writeMean(std::ofstream &meandataofs) {
+inline void Population::writeMeanStdDev(std::ofstream &meandataofs) {
 	if (!meandataofs.is_open()) {
 		throw std::runtime_error("Unable to open means datafile...");
 	}
@@ -61,7 +88,7 @@ inline void Population::writeMean(std::ofstream &meandataofs) {
 	meandataofs << 1;
 	for (size_t i = 0; i < means.size(); ++i) meandataofs << "," << means[i];
 	meandataofs << std::endl;
-}
+};
 
 
 

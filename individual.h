@@ -33,10 +33,12 @@ public:
 
 	// Get functions:
 	genome getGenome() const { return genes; };			// Return values of genes 1/2/3/4
-	traits getDamages() const { return damages; };	// Return trait damage values (array of two)
+	traits getDamages() const { return damages; };		// Return trait damage values (array of two)
 	int getAge() const { return age; };					// Return age
+	double getFecundity() const { return fecundity; };	// Return fecundity
 	double getLRS() const { return lifetimeRS; };		// Return lifetime reproductive success
-	int getDeathcause() const { return deathCause; };	// Return cause of death
+	bool isAlive() const { return alive; };             // Check if alive
+    int getDeathcause() const { return deathCause; };	// Return cause of death
 
 
 
