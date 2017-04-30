@@ -14,7 +14,7 @@ void Population::calcMeanStdDev() {
         mValues.push_back(indData);
     }
 
-#pragma omp parallel for
+//#pragma omp parallel for schedule(dynamic)
     for(int i = 0; i < mValues[0].size(); ++i) {
         double total = 0.0, varTotal = 0.0;
         for (auto &value : mValues) total += value[i];

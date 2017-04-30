@@ -36,6 +36,11 @@ public:
 // Calculate fecundity and damage and increase the latter ((parallel))
 // Also kill, reproduce and mutate individuals
 inline void Population::advance() {
+//#pragma omp parallel for
+//	for (auto it = cohort.begin(); it < cohort.end(); ++it) {
+//		it->calcResources();
+//	}
+
 	for (auto &ind : cohort) {
 		ind.calcResources();
 		ind.kill();
