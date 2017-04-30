@@ -17,7 +17,7 @@ class Individual {
 	double lifetimeRS = 0.0;				// Lifetime Reproductive Success; measure for fitness.
 	double fecundity;						// (Relative) amount of offspring resources (max. = 1.0)
 	genome genes;							// Array of genes
-	traits damages = { 0.01, 0.01 };		// Array of all traits' damage
+	traits damages = {{ 0.01, 0.01 }};		// Array of all traits' damage
 	 
 
 public:

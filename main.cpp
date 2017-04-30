@@ -1,5 +1,5 @@
 #include <string>
-#include <fstream>
+//#include <fstream>
 #include <stdexcept>
 #include <iostream>
 //#include <limits>
@@ -7,7 +7,7 @@
 //#include <array>
 #include "globals.h"
 #include "randomnumbers.h"
-#include "individual.h"
+//#include "individual.h"
 #include "population.h"
 
 using namespace std;
@@ -23,21 +23,34 @@ int main(int argc, char* argv[]){
     try {
         argc > 1 ? readParameters(argv[1]) : readParameters();
 
-		cout << popSize << endl << intDeathRate << endl << extDeathRate << endl << endl;
-		for (size_t i = 0; i < genesAmount; ++i) {
-			cout << "Gene  "<< i << " mean: " << genesMean[i] << endl;
-			cout << "Gene  " << i << " stddev: " << genesStdDev[i] << endl;
-			cout << "Mutation rate gene " << i << ": " << mutRates[i] << endl;
-			cout << "Mutation gene " << i << " stddev: " << mutStdDevs[i] << endl;
-		}
-		randomize();
-		std::ofstream means_data("means.csv");
+        randomize(); // To be called AFTER reading parameters; when seed = 0 (default), a new random seed is set.
 
-		//For testing//
+		std::ofstream means_data("means.csv");
+        means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
+                   << "g4mean," << "g4stddev," << "d1mean," << "d2stddev," << "d2mean," << "d2stddev,"
+                   << "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
+
 		Population pop;
-		pop.advance();
-		pop.calcMeanStdDev();
-		pop.writeMean(means_data);
+        int time = 0;
+        while (time < maxGens) {
+
+            long starttime;
+            if(!(time % skip)) {
+                cout << "calculation ";
+                starttime = clock();
+            }
+            pop.advance();
+            pop.calcMeanStdDev();
+            if(!(time % skip)) end_timer(starttime);
+
+            if(!(time % skip)) {
+                cout << "writing ";
+                starttime = clock();
+                pop.writeMeanStdDev(means_data, time);
+                end_timer(starttime);
+            }
+            ++time;
+        }
     }	
 
     catch (exception &error) {
@@ -87,6 +100,8 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
 					ifs >> beta;
 				} else if (parId == "Fec_Steepness") {
 					ifs >> f_c;
+                } else if (parId == "Skip") {
+                    ifs >> skip;
 				} else if (parId == "Gene1_Mean") {
 					ifs >> genesMean[0];
 				} else if (parId == "Gene2_Mean") {
@@ -128,7 +143,12 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
         }
     }
 	cout << "Parameters: " << endl << "Seed: " << seed << endl << endl << "Population size: " << popSize << endl
-         << "Intrinsic death rate: " << intDeathRate << endl << "Extrinsic death rate: " << extDeathRate << endl
+         << "Intrinsic death rate: " << intDeathRate << "   (not used in 1.0)" <<  endl << "Extrinsic death rate: " << extDeathRate << endl
          << "Maximum offspring per ind.: " << maxOffspring << endl << "Maximum amount of generations: " << maxGens
-         << endl << endl;
+         << endl << "Skip: " << skip << endl << endl;
+
+    for (size_t i = 0; i < genesAmount; ++i) {
+        cout << "Gene  "<< i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]
+             << endl << "Mutation rate : " << mutRates[i] << endl << "Mutation Stddev :" << mutStdDevs[i] << endl;
+    }
 };
