@@ -32,6 +32,7 @@ public:
 	void writeMeanStdDev(std::ofstream &data, int &generation);		// Write data
 };
 
+// Initialise population with Individuals
 inline void Population::init() {
     for (size_t i = 0; i < cohort.size(); ++i) {
         Individual ind;
