@@ -19,10 +19,10 @@ class Population {
 	std::array<double, dataMeansAmount> stdDevs;// Array of standard deviations as calculated from all individuals
 
 public:
-	Population() : cohort(popSize, Individual()) {};
-	~Population() = default;
-
+    Population() : cohort(popSize) {};
+    ~Population() = default;
 	//Set functions
+    void init();
 	void advance();					// Calculate fecundity and damage and increase the latter ((parallel))
 									// Also kill, reproduce and mutate individuals
 	void reproduceFromAll();		// Take new generation from all individuals (offspring before death)
@@ -31,6 +31,13 @@ public:
 	void calcMeanStdDev();							// Calculate means and stddev of genes, damage, age and LRS.
 	void writeMeanStdDev(std::ofstream &data, int &generation);		// Write data
 };
+
+inline void Population::init() {
+    for (size_t i = 0; i < cohort.size(); ++i) {
+        Individual ind;
+        cohort[i] = ind;
+    }
+}
 
 
 // Calculate fecundity and damage and increase the latter ((parallel))
@@ -44,7 +51,7 @@ inline void Population::advance() {
 	reproduceFromAlive();
 //	reproduceFromAll();
 
-	for (auto ind : cohort) if (!ind.getAge()) ind.mutate();
+	for (auto ind : cohort) if (ind.getAge() == 0) ind.mutate();
 //	for (auto ind : cohort) ind.mutate();
 
 

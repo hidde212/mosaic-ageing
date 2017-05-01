@@ -5,7 +5,7 @@
 //#include <limits>
 //#include <ctime>
 //#include <array>
-//#include <boost\progress.hpp>
+//#include <boost/progress.hpp>
 #include "globals.h"
 #include "randomnumbers.h"
 //#include "individual.h"
@@ -31,9 +31,11 @@ int main(int argc, char* argv[]){
                    << "g4mean," << "g4stddev," << "d1mean," << "d2stddev," << "d2mean," << "d2stddev,"
                    << "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
 
+
 		Population pop;
         int time = 0;
-		//boost::progress_display show_progress(maxGens);
+//		boost::progress_display show_progress(maxGens);
+        pop.init();
         while (time < maxGens) {
             pop.advance();
             pop.calcMeanStdDev();
@@ -42,7 +44,7 @@ int main(int argc, char* argv[]){
                 pop.writeMeanStdDev(means_data, time);
             }
             ++time;
-			//++show_progress;
+//			++show_progress;
         }
     }	
 
@@ -133,6 +135,12 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
 					throw logic_error("Unknown parameter in parameter file...");
                 }
             } else break;
+        }
+    } else {
+        genesStdDev[0] = genesStdDev[2] = 1.0;
+        for (size_t i = 0; i < mutRates.size(); ++i) {
+            mutRates[i] = 0.01;
+            mutStdDevs[i] = 0.5;
         }
     }
 	cout << "Parameters: " << endl << "Seed: " << seed << endl << endl << "Population size: " << popSize << endl
