@@ -28,8 +28,6 @@ extern std::array<double, genesAmount> genesStdDev;
 extern std::array<double, genesAmount> mutRates;
 extern std::array<double, genesAmount> mutStdDevs;
 
-
-
 //void end_timer (long& startTime);
 inline void end_timer (long &startTime) { std::cout << "time: " << (clock()-startTime)/double(CLOCKS_PER_SEC)*1000 << std::endl; };
 
