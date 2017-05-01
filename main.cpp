@@ -5,6 +5,7 @@
 //#include <limits>
 //#include <ctime>
 //#include <array>
+//#include <boost\progress.hpp>
 #include "globals.h"
 #include "randomnumbers.h"
 //#include "individual.h"
@@ -32,24 +33,16 @@ int main(int argc, char* argv[]){
 
 		Population pop;
         int time = 0;
+		//boost::progress_display show_progress(maxGens);
         while (time < maxGens) {
-
-            long starttime;
-            if(!(time % skip)) {
-                cout << "calculation ";
-                starttime = clock();
-            }
             pop.advance();
             pop.calcMeanStdDev();
-            if(!(time % skip)) end_timer(starttime);
 
             if(!(time % skip)) {
-                cout << "writing ";
-                starttime = clock();
                 pop.writeMeanStdDev(means_data, time);
-                end_timer(starttime);
             }
             ++time;
+			//++show_progress;
         }
     }	
 
