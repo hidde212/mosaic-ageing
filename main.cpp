@@ -142,6 +142,6 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
 
     for (size_t i = 0; i < genesAmount; ++i) {
         cout << "Gene  "<< i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]
-             << endl << "Mutation rate : " << mutRates[i] << endl << "Mutation Stddev :" << mutStdDevs[i] << endl;
+             << endl << "Mutation rate : " << mutRates[i] << endl << "Mutation Stddev :" << mutStdDevs[i] << endl << endl;
     }
 };
