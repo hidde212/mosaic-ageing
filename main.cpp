@@ -49,10 +49,15 @@ int main(int argc, char* argv[]){
 
     catch (exception &error) {
         cerr << error.what();
+        std::cin.ignore();
+        std::cout << "Press enter to exit...";
+        std::cin.get();
         exit(EXIT_FAILURE);
     }
 
-	//system("pause");
+//    std::cin.ignore(1024, '\n');
+//    std::cout << "Press enter to finish...";
+//    std::cin.get();
 	return 0;
 };
 
