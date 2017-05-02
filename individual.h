@@ -13,9 +13,9 @@ using traits = std::array<double, traitsAmount>;
 class Individual {
 	int age = 0;							// Current age of individual
 	bool alive = true;						// Whether alive or not.
-	int deathCause;							// Indication of death by which trait (1, 2) or extr. factors (0)
+	int deathCause = 0;						// Indication of death by which trait (1, 2) or extr. factors (0)
 	double lifetimeRS = 0.0;				// Lifetime Reproductive Success; measure for fitness.
-	double fecundity;						// (Relative) amount of offspring resources (max. = 1.0)
+	double fecundity = 0.0;					// (Relative) amount of offspring resources (max. = 1.0)
 	genome genes;							// Array of genes
 	traits damages = {{ 0.01, 0.01 }};		// Array of all traits' damage
 	 
@@ -47,7 +47,7 @@ public:
 //Return array of genes with normal(geneMean, geneStdDev)
 inline genome Individual::setGenes() {
 	genome genetemp;
-	for (size_t i = 0; i < genes.size(); ++i) {
+	for (size_t i = 0; i < genetemp.size(); ++i) {
 		genetemp[i] = normal(genesMean[i], genesStdDev[i]);
 	}
 	return genetemp;
