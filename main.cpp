@@ -5,7 +5,7 @@
 //#include <limits>
 //#include <ctime>
 //#include <array>
-//#include <boost/progress.hpp>
+#include <boost/progress.hpp>
 #include "globals.h"
 #include "randomnumbers.h"
 //#include "individual.h"
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
 
 		Population pop;
         int time = 0;
-		//boost::progress_display show_progress(maxGens);
+		boost::progress_display show_progress(maxGens);
         pop.init();
         while (time < maxGens) {
             pop.advance();
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
                 pop.writeMeanStdDev(means_data, time);
             }
             ++time;
-			//++show_progress;
+			++show_progress;
         }
     }	
 

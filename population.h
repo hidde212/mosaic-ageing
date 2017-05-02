@@ -51,8 +51,8 @@ inline void Population::advance() {
 	reproduceFromAlive();
 //	reproduceFromAll();
 
-	for (auto ind : cohort) if (ind.getAge() == 0) ind.mutate();
-//	for (auto ind : cohort) ind.mutate();
+	for (auto& ind : cohort) if (ind.getAge() == 0) ind.mutate();
+//	for (auto& ind : cohort) ind.mutate();
 
 
 };

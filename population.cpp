@@ -40,8 +40,9 @@ void Population::writeMeanStdDev(std::ofstream &data, int &generation) {
 
 
 void Population::reproduceFromAlive(){
-    std::vector<double> vFec, vIndex;
-    for (size_t i = 0; i < cohort.size(); ++i) {
+    std::vector<double> vFec;
+    std::vector<int> vIndex;
+    for (int i = 0; i < cohort.size(); ++i) {
         if (cohort[i].isAlive()) {
             vFec.push_back(cohort[i].getFecundity());
             vIndex.push_back(i);
