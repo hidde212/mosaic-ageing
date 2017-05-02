@@ -19,13 +19,13 @@ Skip;                   50      // To write output data at every $skip generatio
 //
 
 Gene1_Mean			0.0		// Mean of norm. dist. of gene 1
-Gene1_StdDev		0.0		// Standard Deviation of norm. dist. of gene 1
+Gene1_StdDev		0.01	// Standard Deviation of norm. dist. of gene 1 (higher than 0.0)
 Gene2_Mean			0.0		// Mean of norm. dist. of gene 2
-Gene2_StdDev		0.0		// Standard Deviation of norm. dist. of gene 2
+Gene2_StdDev		0.01	// Standard Deviation of norm. dist. of gene 2 (higher than 0.0)
 Gene3_Mean			0.0		// Mean of norm. dist. of gene 3
-Gene3_StdDev		0.0		// Standard Deviation of norm. dist. of gene 3
+Gene3_StdDev		0.01	// Standard Deviation of norm. dist. of gene 3 (higher than 0.0)
 Gene4_Mean			0.0		// Mean of norm. dist. of gene 4
-Gene4_StdDev		0.0		// Standard Deviation of norm. dist. of gene 4
+Gene4_StdDev		0.01	// Standard Deviation of norm. dist. of gene 4 (higher than 0.0)
 
 //
 //Mutation parameters; (0.01 = 1% of population has chance on mutation)

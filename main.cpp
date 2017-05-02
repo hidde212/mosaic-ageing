@@ -23,7 +23,6 @@ void readParameters(const std::string &parFilename = "nofile");
 int main(int argc, char* argv[]){
     try {
         argc > 1 ? readParameters(argv[1]) : readParameters();
-
         randomize(); // To be called AFTER reading parameters; when seed = 0 (default), a new random seed is set.
 
 		std::ofstream means_data("means.csv");
@@ -34,7 +33,7 @@ int main(int argc, char* argv[]){
 
 		Population pop;
         int time = 0;
-//		boost::progress_display show_progress(maxGens);
+		//boost::progress_display show_progress(maxGens);
         pop.init();
         while (time < maxGens) {
             pop.advance();
@@ -44,7 +43,7 @@ int main(int argc, char* argv[]){
                 pop.writeMeanStdDev(means_data, time);
             }
             ++time;
-//			++show_progress;
+			//++show_progress;
         }
     }	
 
@@ -136,9 +135,13 @@ void readParameters(const std::string &parFileName /*= "nofile"*/){
                 }
             } else break;
         }
+		for (size_t i = 0; i < genesStdDev.size(); ++i) {
+			if (genesStdDev[i] == 0.0) throw logic_error("Genes standard deviation parameter cannot be 0.0 ...");
+			if (mutStdDevs[i] == 0.0) throw logic_error("Mutation standard deviation parameter cannot be 0.0 ...");
+		}
     } else {
-        genesStdDev[0] = genesStdDev[2] = 1.0;
         for (size_t i = 0; i < mutRates.size(); ++i) {
+			genesStdDev[i] = 0.0001;
             mutRates[i] = 0.01;
             mutStdDevs[i] = 0.5;
         }
