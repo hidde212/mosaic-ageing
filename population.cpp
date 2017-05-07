@@ -2,13 +2,15 @@
 
 
 void Population::calcMeanStdDev() {
-//	for (auto& value : means) value = 0.0;
+//    for (auto& value : means) value = 0.0;
+//    for (auto& dev : stdDevs) dev = 0.0;
+
     std::vector<std::vector<double> > mValues;
 
     for (auto &ind : cohort) {
         std::vector<double> indData;
-        for (size_t i = 0; i < genesAmount; ++i) indData.push_back(ind.getGenome()[i]);
-        for (size_t i = 0; i < traitsAmount; ++i) indData.push_back(ind.getDamages()[i]);
+        for (size_t i = 0; i < genesNo; ++i) indData.push_back(ind.getGenome()[i]);
+        for (size_t i = 0; i < traitsNo; ++i) indData.push_back(ind.getDamages()[i]);
         indData.push_back(ind.getAge());
         indData.push_back(ind.getLRS());
         mValues.push_back(indData);
@@ -17,9 +19,9 @@ void Population::calcMeanStdDev() {
     for(int i = 0; i < mValues[0].size(); ++i) {
         double total = 0.0, varTotal = 0.0;
         for (auto &value : mValues) total += value[i];
-        means[i] = total / mValues.size();
+        means[i] = total / popSize;
         for (auto &dev : mValues) varTotal += pow((dev[i] - means[i]), 2.0);
-        stdDevs[i] = sqrt(varTotal / mValues.size());
+        stdDevs[i] = sqrt(varTotal / popSize);
     }
 
 };

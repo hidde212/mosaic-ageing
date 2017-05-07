@@ -3,24 +3,20 @@
 #define MOSAIC_AGEING_POPULATION_H
 
 #include <vector>
-#include <array>
+//#include <array>
 #include <fstream>
 #include <stdexcept>
-#include <iostream>
-#include "randomnumbers.h"
-#include "globals.h"
+//#include <iostream>
 #include "individual.h"
 
 
 // Class containing vector of Individual class and functions acting on this
 class Population {
 	std::vector<Individual> cohort;             // Vector of individuals
-	std::array<double, dataMeansAmount> means;  // Array of means as calculated from all individuals
-	std::array<double, dataMeansAmount> stdDevs;// Array of standard deviations as calculated from all individuals
+	std::array<double, dataMeansNo> means;  // Array of means as calculated from all individuals
+	std::array<double, dataMeansNo> stdDevs;// Array of standard deviations as calculated from all individuals
 
 public:
-    Population() : cohort(popSize) {};
-    ~Population() = default;
 	//Set functions
     void init();
 	void advance();					// Calculate fecundity and damage and increase the latter ((parallel))
@@ -34,9 +30,9 @@ public:
 
 // Initialise population with Individuals
 inline void Population::init() {
-    for (size_t i = 0; i < cohort.size(); ++i) {
+    for (size_t i = 0; i < popSize; ++i) {
         Individual ind;
-        cohort[i] = ind;
+        cohort.push_back(ind);
     }
 }
 

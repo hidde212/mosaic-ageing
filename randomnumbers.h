@@ -3,6 +3,7 @@
 #define MOSAIC_AGEING_RANDOMNUMBERS_H
 
 #include <random>
+#include "globals.h"
 
 long randomize();
 
