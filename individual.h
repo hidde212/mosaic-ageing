@@ -2,12 +2,12 @@
 #ifndef MOSAIC_AGEING_INDIVIDUAL_H
 #define MOSAIC_AGEING_INDIVIDUAL_H
 
-#include <array>
-#include "globals.h"
+//#include <array>
+//#include "globals.h"
 #include "randomnumbers.h"
 
-using genome = std::array<double, genesAmount>;
-using traits = std::array<double, traitsAmount>;
+using genome = std::array<double, genesNo>;
+using traits = std::array<double, traitsNo>;
 
 // Individual class, including array of genes and array of traits 
 class Individual {
@@ -82,14 +82,14 @@ inline bool Individual::kill() {
 
 // Calculate offspring(fecundity) and repair resources, add damage
 inline void Individual::calcResources() {
-	double reprEffort = 1 / (1 + exp(-genes[0] * beta * (1 - (damages[0] + damages[1])) + genes[1]));
-	lifetimeRS += reprEffort;
-	fecundity = 1 - exp(-f_c * reprEffort);							// Max fecundity not above 1.0
+	double offspringAlloc = 1 / (1 + exp(-genes[0] * beta * (1 - (damages[0] + damages[1])) + genes[1]));
+	fecundity = 1 - exp(-f_c * offspringAlloc);							// Max fecundity not above 1.0
+    lifetimeRS += fecundity;
 
 	double repairTrait1 = 1 / (1 + exp(-genes[2] * alpha * ((damages[0] - damages[1]) / (damages[0] + damages[1])) + genes[3]));
-	damages[0] += (1.0 - reprEffort) * (1.0 - repairTrait1);
-	damages[1] += (1.0 - reprEffort) * repairTrait1;
-	for (auto dam : damages) if (dam > 1.0) dam = 1.0;				// Make sure damage is not above 1.0
+	damages[0] += offspringAlloc * (1.0 - repairTrait1); // repair allocation = 1 - offspring; thus "damage allocation" = offspringAlloc
+	damages[1] += offspringAlloc * repairTrait1;
+	for (auto& dam : damages) if (dam > 1.0) dam = 1.0;				// Make sure damage is not above 1.0
 };
 
 

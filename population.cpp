@@ -9,8 +9,8 @@ void Population::calcMeanStdDev() {
 
     for (auto &ind : cohort) {
         std::vector<double> indData;
-        for (size_t i = 0; i < genesAmount; ++i) indData.push_back(ind.getGenome()[i]);
-        for (size_t i = 0; i < traitsAmount; ++i) indData.push_back(ind.getDamages()[i]);
+        for (size_t i = 0; i < genesNo; ++i) indData.push_back(ind.getGenome()[i]);
+        for (size_t i = 0; i < traitsNo; ++i) indData.push_back(ind.getDamages()[i]);
         indData.push_back(ind.getAge());
         indData.push_back(ind.getLRS());
         mValues.push_back(indData);

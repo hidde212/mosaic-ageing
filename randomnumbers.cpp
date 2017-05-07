@@ -1,8 +1,9 @@
 #include <iostream>
 #include <chrono>
-#include <random>
+//#include <random>
+//#include "globals.h"
 #include "randomnumbers.h"
-#include "globals.h"
+
 
 std::mt19937 rng;
 
@@ -10,10 +11,12 @@ long randomize() {
     if (seed == 0) {
         static std::random_device rd{};
         auto seeder = rd();
-//        std::cout << "Used seed: " << seeder << std::endl;
         rng.seed(seeder);
-        seed = seeder;
-	} return seed;
+        return seeder;
+	} else {
+        rng.seed(seed);
+        return seed;
+    }
 }
 
 // random integer {0,...,n} (including n)
