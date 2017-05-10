@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ctime>
 #include <boost/progress.hpp>
+#include <iomanip>
 #include "population.h"
 
 using namespace std;
@@ -16,20 +17,26 @@ int main(){
     try {
         long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
 
-        string timeNow;
+        string timeNow = getTimeDate();
         std::ofstream params("pars" + timeNow + ".txt");
+        std::ofstream means_data("means"+ timeNow + ".csv");
 
-        params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl << "Population size: " << popSize << endl
-               << "Intrinsic death rate: " << intDeathRate << "   (not used in 1.0)" <<  endl << "Extrinsic death rate: "
-               << extDeathRate << endl << endl << "Maximum amount of generations: " << maxGens << endl << "Skip: "
-               << skip << endl << endl;
+        const int width = 15;
+        params << "Parameters: " << endl << setw(width) << "Seed: " << actualSeed << endl << endl
+               << "Population size: " << popSize << setw(width) << "/// (Initial) generation size " << endl
+               << "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
+               << "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" <<  endl << endl
+               << "Skip: " << skip << setw(width) << "/// To write output data at every $skip generations" << endl
+               << "alpha1: " << alpha1 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
+               << "alpha2: " << alpha2 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
+               << "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage1" << endl
+               << "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage1" << endl << endl;
 
         for (size_t i = 0; i < genesNo; ++i) {
             params << "Gene  "<< i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]
-                 << endl << "Mutation rate : " << mutRates[i] << endl << "Mutation Stddev :" << mutStdDevs[i] << endl << endl;
+                 << endl << "Mutation rate: " << mutRates[i] << endl << "Mutation Stddev: " << mutStdDevs[i] << endl << endl;
         }
 
-		std::ofstream means_data("means"+ timeNow + ".csv");
         means_data << "Seed: ," << actualSeed << endl;
         means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
                    << "g4mean," << "g4stddev," << "d1mean," << "d2stddev," << "d2mean," << "d2stddev,"
