@@ -53,8 +53,9 @@ void Population::reproduceFromAlive(){
 
     for (size_t i = 0; i < cohort.size(); ++i) {
         if (!cohort[i].isAlive()) {
-            Individual indNew(cohort[vIndex[rindex(vFec)]].getGenome());// Get genome of rand. parent by pulling from vector
-            cohort[i] = indNew;                                         // with offspring resources of alive individuals
+            Individual indNew(cohort[vIndex[rindex(vFec)]].getGenome());    // Get genome of rand. parent by pulling from vector
+            indNew.mutate();                                                // with offspring resources of alive individuals
+            cohort[i] = indNew;
         }
     }
 };

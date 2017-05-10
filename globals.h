@@ -5,20 +5,24 @@
 #include <ctime>
 #include <iostream>
 
-//Global variables
+///Global variables
 const unsigned popSize = 5000;			/// (Initial) generation size
 const double intDeathRate = 0.5;	    /// Chance to die (lower is higher survivability); intrinsic death rate.
 const double extDeathRate = 0.01;	    /// Fraction individuals who die each timestep, extrinsic death
-const int maxGens = 15000;				/// Maximum amount of generation allowed per simulation
+const int maxGens = 50000;				/// Maximum amount of generation allowed per simulation
 const int seed = 0;                     /// Seed.
-const double alpha = 1.0;				/// variable determining how much impact the total state (damage) has on offspring/repair resources
-const double beta = 1.0;				/// variable determining how much impact the damage ratio has on repair allocation
 const double f_c = 4.0;					/// Determining steepness of fecundity curve
-const int skip = 50;                    /// To write output data at every $skip generations
+const int skip = 250;                   /// To write output data at every $skip generations
 
-const unsigned genesNo = 4;	        /// amount of genes
-const unsigned traitsNo = 2;        /// amount of traits
-const unsigned dataMeansNo = 8;	    /// amount of data of which the mean and stddev is collected (genes x4, damage x2, age, LRS)
+const unsigned genesNo = 4;	            /// amount of genes
+const unsigned traitsNo = 2;            /// amount of traits
+const unsigned dataMeansNo = 8;	        /// amount of data of which the mean and stddev is collected (genes x4, damage x2, age, LRS)
+
+///Parameters for mortality curves
+const double alpha1 = 10.0;             /// Displacement of curve over x-axis; damage1
+const double alpha2 = 10.0;             /// Displacement of curve over x-axis; damage2
+const double beta1 = 4.0;              /// Steepness of curve; damage1
+const double beta2 = 4.0;              /// Steepness of curve; damage2
 
 ///
 ///Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
@@ -36,7 +40,7 @@ const double gene4_StdDev = 0.01;	    /// Standard Deviation of norm. dist. of g
 ///
 ///Mutation paraers; (0.01 = 1% of population has chance on mutation)
 ///
-const double mutationRate1 = 0.01;      /// Rate of mutation for gene 1
+const double mutationRate1 = 0.01;     /// Rate of mutation for gene 1
 const double mutationRate2 = 0.01;     /// Rate of mutation for gene 2
 const double mutationRate3 = 0.01;     /// Rate of mutation for gene 3
 const double mutationRate4 = 0.01;     /// Rate of mutation for gene 4

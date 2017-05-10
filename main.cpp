@@ -1,10 +1,13 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#include <ctime>
 #include <boost/progress.hpp>
 #include "population.h"
 
 using namespace std;
+
+string getTimeDate(); /// Function to get time and date in string form
 
 //
 // Main program
@@ -13,7 +16,8 @@ int main(){
     try {
         long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
 
-        std::ofstream params("pars.txt");
+        string timeNow;
+        std::ofstream params("pars" + timeNow + ".txt");
 
         params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl << "Population size: " << popSize << endl
                << "Intrinsic death rate: " << intDeathRate << "   (not used in 1.0)" <<  endl << "Extrinsic death rate: "
@@ -25,7 +29,7 @@ int main(){
                  << endl << "Mutation rate : " << mutRates[i] << endl << "Mutation Stddev :" << mutStdDevs[i] << endl << endl;
         }
 
-		std::ofstream means_data("means.csv");
+		std::ofstream means_data("means"+ timeNow + ".csv");
         means_data << "Seed: ," << actualSeed << endl;
         means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
                    << "g4mean," << "g4stddev," << "d1mean," << "d2stddev," << "d2mean," << "d2stddev,"
@@ -56,9 +60,22 @@ int main(){
         exit(EXIT_FAILURE);
     }
 
-    std::cin.ignore(1024, '\n');
-    std::cout << "Press enter to continue...";
-    std::cin.get();
-	//system("pause");
+//    std::cin.ignore(1024, '\n');
+//    std::cout << "Press enter to continue...";
+//    std::cin.get();
 	return 0;
 };
+
+string getTimeDate() {
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer,sizeof(buffer),"%Y%m%d_%H:%M",timeinfo);
+    std::string str(buffer);
+
+    return ("_"+ str);
+}
