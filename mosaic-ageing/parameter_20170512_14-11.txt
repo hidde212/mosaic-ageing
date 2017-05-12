@@ -1,0 +1,37 @@
+Parameters: 
+Seed: -1100508826
+
+Population size: 5000/// (Initial) generation size 
+Generations: 100000/// Maximum amount of generation allowed per simulation
+Extrinsic death rate: 0.01/// Fraction individuals who die each timestep, extrinsic death
+
+Skip: 250/// To write output data at every $skip generations
+alpha1: 10/// Displacement of curve over x-axis; damage1
+alpha2: 10/// Displacement of curve over x-axis; damage1
+beta1: 4/// Steepness of curve; damage1
+beta2: 4/// Steepness of curve; damage1
+
+Gene  0:
+Mean: 1
+Stddev: 1
+Mutation rate: 0.01
+Mutation Stddev: 0.5
+
+Gene  1:
+Mean: 0
+Stddev: 1
+Mutation rate: 0.01
+Mutation Stddev: 0.5
+
+Gene  2:
+Mean: 0
+Stddev: 1
+Mutation rate: 0.01
+Mutation Stddev: 0.5
+
+Gene  3:
+Mean: 0
+Stddev: 1
+Mutation rate: 0.01
+Mutation Stddev: 0.5
+

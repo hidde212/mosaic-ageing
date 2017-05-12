@@ -40,7 +40,7 @@ int main(){
 
         means_data << "Seed: ," << actualSeed << endl;
         means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
-                   << "g4mean," << "g4stddev," << "d1mean," << "d2stddev," << "d2mean," << "d2stddev,"
+                   << "g4mean," << "g4stddev," << "d1mean," << "d1stddev," << "d2mean," << "d2stddev,"
                    << "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
 
 
