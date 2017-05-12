@@ -24,7 +24,7 @@ public:
 	void reproduceFromAll();		// Take new generation from all individuals (offspring before death)
 	void reproduceFromAlive();		// Take new generation from alive individuals
 
-	void calcMeanStdDev();							// Calculate means and stddev of genes, damage, age and LRS.
+	void calcMeanStdDev();			// Calculate means and stddev of genes, damage, age and LRS.
 	void writeMeanStdDev(std::ofstream &data, int &generation);		// Write data
 };
 

@@ -15,14 +15,15 @@ string getTimeDate(); /// Function to get time and date in string form
 //
 int main(){
     try {
-        long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
+		long starttime = clock();
+		long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
 
-        string timeNow = getTimeDate();
-        std::ofstream params("pars" + timeNow + ".txt");
-        std::ofstream means_data("means"+ timeNow + ".csv");
+        string timeNow = getTimeDate();		
+        std::ofstream params("parameter" + timeNow + ".txt");
+		std::ofstream means_data("means" + timeNow + ".csv");
 
         const int width = 15;
-        params << "Parameters: " << endl << setw(width) << "Seed: " << actualSeed << endl << endl
+        params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl
                << "Population size: " << popSize << setw(width) << "/// (Initial) generation size " << endl
                << "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
                << "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" <<  endl << endl
@@ -57,6 +58,13 @@ int main(){
             ++time;
 			++show_progress;
         }
+		long hours, minutes, seconds, secondsTotal, timeElapsed = (clock() - starttime) / double(CLOCKS_PER_SEC) * 1000;
+		secondsTotal = timeElapsed / 1000;
+		minutes = secondsTotal / 60;
+		seconds = secondsTotal % 60;
+		hours = minutes / 60;
+		minutes = minutes % 60;
+		params << endl << "Simulation time: " << hours << "h" << minutes << "m" << seconds << "s" << endl;
     }	
 
     catch (exception &error) {
@@ -81,7 +89,7 @@ string getTimeDate() {
     time (&rawtime);
     timeinfo = localtime(&rawtime);
 
-    strftime(buffer,sizeof(buffer),"%Y%m%d_%H:%M",timeinfo);
+    strftime(buffer,sizeof(buffer),"%Y%m%d_%H-%M",timeinfo);
     std::string str(buffer);
 
     return ("_"+ str);
