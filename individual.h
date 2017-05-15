@@ -62,17 +62,17 @@ inline void Individual::mutate() {
 	}
 }
 
-//Kill individual when ru() < damage (thus when damage > 1 always dead)
+//Kill individual when ru() < exp(-alpha*exp(-beta*damage)); when not killed age increased.
 inline bool Individual::kill() {
 	if (ru() < extDeathRate) {
 		alive = false;
 		deathCause = 0;
 	}
-	else if (ru() < damages[0]) {
+	else if (ru() < exp(-alpha1 * exp(-beta1 * damages[0]))) {
 		alive = false;
 		deathCause = 1;
 	}
-	else if (ru() < damages[1]) {
+    else if (ru() < exp(-alpha2 * exp(-beta2 * damages[1]))) {
 		alive = false;
 		deathCause = 2;
 	}
@@ -82,11 +82,13 @@ inline bool Individual::kill() {
 
 // Calculate offspring(fecundity) and repair resources, add damage
 inline void Individual::calcResources() {
-	double offspringAlloc = 1 / (1 + exp(-genes[0] * beta * (1 - (damages[0] + damages[1])) + genes[1]));
-	fecundity = 1 - exp(-f_c * offspringAlloc);							// Max fecundity not above 1.0
+    double damTot = damages[0] + damages[1];
+	//double offspringAlloc = 1 / (1 + exp(-genes[0] * beta * (1 - (damages[0] + damages[1])) + genes[1])); //OLD
+    double offspringAlloc = 1 / (1 + exp(genes[0] * (damTot - genes[1])));
+    fecundity = 1 - exp(-f_c * offspringAlloc);							// Max fecundity not above 1.0
     lifetimeRS += fecundity;
 
-	double repairTrait1 = 1 / (1 + exp(-genes[2] * alpha * ((damages[0] - damages[1]) / (damages[0] + damages[1])) + genes[3]));
+	double repairTrait1 = 1 / (1 + exp(-genes[2] * ((damages[0] - damages[1]) / (damages[0] + damages[1])) + genes[3]));
 	damages[0] += offspringAlloc * (1.0 - repairTrait1); // repair allocation = 1 - offspring; thus "damage allocation" = offspringAlloc
 	damages[1] += offspringAlloc * repairTrait1;
 	for (auto& dam : damages) if (dam > 1.0) dam = 1.0;				// Make sure damage is not above 1.0
