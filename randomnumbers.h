@@ -6,6 +6,7 @@
 #include "globals.h"
 
 long randomize();
+void randomize(long seed);
 
 // random integer [0,n]
 int rn(const int&);

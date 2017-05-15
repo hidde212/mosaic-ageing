@@ -8,8 +8,8 @@
 ///Global variables
 const unsigned popSize = 5000;			/// (Initial) generation size
 const double extDeathRate = 0.01;	    /// Fraction individuals who die each timestep, extrinsic death
-const int maxGens = 100000;				/// Maximum amount of generation allowed per simulation
-const int seed = 0;                     /// Seed. When 0, random seed is created.
+const int maxGens = 1000;				/// Maximum amount of generation allowed per simulation
+const int seed = 2770494511;                     /// Seed. When 0, random seed is created.
 const double f_c = 4.0;					/// Determining steepness of fecundity curve
 const int skip = 250;                   /// To write output data at every $skip generations
 
@@ -26,15 +26,15 @@ const double beta2 = 4.0;               /// Steepness of curve; damage2
 ///
 ///Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
 ///
-const double gene1_Mean = 1.0;  		/// Mean of norm. dist. of gene 1
+const double gene1_Mean = 0.0;  		/// Mean of norm. dist. of gene 1
 const double gene2_Mean	= 0.0;		    /// Mean of norm. dist. of gene 2
 const double gene3_Mean	= 0.0;		    /// Mean of norm. dist. of gene 3
 const double gene4_Mean	= 0.0;		    /// Mean of norm. dist. of gene 4
 
-const double gene1_StdDev = 1.00;   	/// Standard Deviation of norm. dist. of gene 1 (higher than 0.0)
-const double gene2_StdDev = 1.00;	    /// Standard Deviation of norm. dist. of gene 2 (higher than 0.0)
-const double gene3_StdDev = 1.00;	    /// Standard Deviation of norm. dist. of gene 3 (higher than 0.0)
-const double gene4_StdDev = 1.00;	    /// Standard Deviation of norm. dist. of gene 4 (higher than 0.0)
+const double gene1_StdDev = 5.00;   	/// Standard Deviation of norm. dist. of gene 1 (higher than 0.0)
+const double gene2_StdDev = 5.00;	    /// Standard Deviation of norm. dist. of gene 2 (higher than 0.0)
+const double gene3_StdDev = 5.00;	    /// Standard Deviation of norm. dist. of gene 3 (higher than 0.0)
+const double gene4_StdDev = 5.00;	    /// Standard Deviation of norm. dist. of gene 4 (higher than 0.0)
 
 ///
 ///Mutation paraers; (0.01 = 1% of population has chance on mutation)
