@@ -7,16 +7,15 @@
 
 std::mt19937 rng;
 
-long randomize() {
-    if (seed == 0) {
-        static std::random_device rd{};
-        auto seeder = rd();
-        rng.seed(seeder);
-        return seeder;
-	} else {
-        rng.seed(seed);
-        return seed;
-    }
+//long randomize() {
+//	static std::random_device rd{};
+//	auto seeder = rd();
+//	rng.seed(seeder);
+//	return seeder;
+//}
+
+void randomize(unsigned int seeder) {
+	rng.seed(seeder);
 }
 
 // random integer {0,...,n} (including n)

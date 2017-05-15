@@ -8,8 +8,8 @@
 ///Global variables
 const unsigned popSize = 5000;			/// (Initial) generation size
 const double extDeathRate = 0.01;	    /// Fraction individuals who die each timestep, extrinsic death
-const int maxGens = 100000;				/// Maximum amount of generation allowed per simulation
-const int seed = 0;                     /// Seed. When 0, random seed is created.
+const int maxGens = 1000;				/// Maximum amount of generation allowed per simulation
+const int seed = 2770494511;                     /// Seed. When 0, random seed is created.
 const double f_c = 4.0;					/// Determining steepness of fecundity curve
 const int skip = 250;                   /// To write output data at every $skip generations
 

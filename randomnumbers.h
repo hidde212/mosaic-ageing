@@ -5,7 +5,9 @@
 #include <random>
 #include "globals.h"
 
-long randomize();
+//long randomize();
+
+void randomize(unsigned int seeder);
 
 // random integer [0,n]
 int rn(const int&);

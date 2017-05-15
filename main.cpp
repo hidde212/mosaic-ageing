@@ -16,14 +16,23 @@ string getTimeDate(); /// Function to get time and date in string form
 int main(){
     try {
 		long starttime = clock();
-		long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
+
+		unsigned int rand;
+		//when seed = 0 (in globals.h), a new random seed is set.
+		if (seed == 0) { 
+			static random_device rd{};
+			rand = rd();
+		} else {
+			rand = seed;
+		}
+		randomize(rand); 
 
         string timeNow = getTimeDate();		
         std::ofstream params("parameter" + timeNow + ".txt");
 		std::ofstream means_data("means" + timeNow + ".csv");
 
         const int width = 15;
-        params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl
+        params << "Parameters: " << endl << "Seed: " << rand << endl << endl
                << "Population size: " << popSize << setw(width) << "/// (Initial) generation size " << endl
                << "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
                << "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" <<  endl << endl
@@ -38,7 +47,7 @@ int main(){
                  << endl << "Mutation rate: " << mutRates[i] << endl << "Mutation Stddev: " << mutStdDevs[i] << endl << endl;
         }
 
-        means_data << "Seed: ," << actualSeed << endl;
+        means_data << "Seed: ," << rand << endl;
         means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
                    << "g4mean," << "g4stddev," << "d1mean," << "d1stddev," << "d2mean," << "d2stddev,"
                    << "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
