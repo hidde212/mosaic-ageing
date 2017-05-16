@@ -84,7 +84,7 @@ inline bool Individual::kill() {
 inline void Individual::calcResources() {
     double damTot = damages[0] + damages[1];
 	//double offspringAlloc = 1 / (1 + exp(-genes[0] * beta * (1 - (damages[0] + damages[1])) + genes[1])); //OLD
-    double offspringAlloc = 1 / (1 + exp(genes[0] * (damTot - genes[1])));
+    double offspringAlloc = 1 / (1 + exp(-genes[0] * (damTot - genes[1])));
     fecundity = 1 - exp(-f_c * offspringAlloc);							// Max fecundity not above 1.0
     lifetimeRS += fecundity;
 
