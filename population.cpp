@@ -71,6 +71,22 @@ void Population::writeMeanStdDev(std::ofstream &data, int &generation) {
     data << std::endl;
 };
 
+void Population::writeFinalPop(std::ofstream &data) {
+    if (!data.is_open()) {
+        throw std::runtime_error("Unable to open means datafile...");
+    }
+
+    data << "gene1,"  << "gene2," << "gene3," << "gene4," << "dam1," << "dam2," << "age," << "LRS," << "deathcause," << std::endl;
+
+    for (auto& ind : cohort) {
+        for (size_t i = 0; i < genesNo; ++i) {
+            data << ind.getGenome()[i] << ",";
+        }
+        data << ind.getDamages()[0] << "," << ind.getDamages()[1] << "," << ind.getAge() << "," << ind.getLRS()
+             << ", " << ind.getDeathcause() << std::endl;
+    }
+}
+
 
 void Population::reproduceFromAlive(){
     std::vector<double> vFec;

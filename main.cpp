@@ -21,6 +21,7 @@ int main(){
         string timeNow = getTimeDate();		
         std::ofstream params("parameter" + timeNow + ".txt");
 		std::ofstream means_data("means" + timeNow + ".csv");
+        std::ofstream final("finalpop" + timeNow + ".csv");
 
         const int width = 15;
         params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl
@@ -58,6 +59,7 @@ int main(){
             ++time;
 			++show_progress;
         }
+        pop.writeFinalPop(final);
 		long hours, minutes, seconds, secondsTotal, timeElapsed = (clock() - starttime) / double(CLOCKS_PER_SEC) * 1000;
 		secondsTotal = timeElapsed / 1000;
 		minutes = secondsTotal / 60;
@@ -89,7 +91,7 @@ string getTimeDate() {
     time (&rawtime);
     timeinfo = localtime(&rawtime);
 
-    strftime(buffer,sizeof(buffer),"%Y%m%d_%H-%M",timeinfo);
+    strftime(buffer,sizeof(buffer),"%Y%m%d_%H-%M-%S",timeinfo);
     std::string str(buffer);
 
     return ("_"+ str);
