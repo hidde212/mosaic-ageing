@@ -2,27 +2,6 @@
 
 // Calculate means and stddev of genes, damage, age and LRS.
 void Population::calcMeanStdDev() {
-////    for (auto& value : means) value = 0.0;
-////    for (auto& dev : stdDevs) dev = 0.0;
-//
-//    std::vector<std::vector<double> > mValues;
-//
-//    for (auto &ind : cohort) {
-//        std::vector<double> indData;
-//        for (size_t i = 0; i < genesNo; ++i) indData.push_back(ind.getGenome()[i]);
-//        for (size_t i = 0; i < traitsNo; ++i) indData.push_back(ind.getDamages()[i]);
-//        indData.push_back(ind.getAge());
-//        indData.push_back(ind.getLRS());
-//        mValues.push_back(indData);
-//    }
-//
-//    for(int i = 0; i < mValues[0].size(); ++i) {
-//        double total = 0.0, varTotal = 0.0;
-//        for (auto &value : mValues) total += value[i];
-//        means[i] = total / popSize;
-//        for (auto &dev : mValues) varTotal += pow((dev[i] - means[i]), 2.0);
-//        stdDevs[i] = sqrt(varTotal / popSize);
-//    }
 	for (size_t i = 0; i < dataMeansNo; ++i) {
 		double ss = 0.0, sum = 0.0;
 		if (i < genesNo) {

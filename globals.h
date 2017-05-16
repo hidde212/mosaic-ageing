@@ -20,13 +20,15 @@ const unsigned dataMeansNo = 8;	        /// amount of data of which the mean and
 ///Parameters for mortality curves
 const double alpha1 = 10.0;             /// Displacement of curve over x-axis; damage1
 const double alpha2 = 10.0;             /// Displacement of curve over x-axis; damage2
-const double beta1 = 4.0;               /// Steepness of curve; damage1
-const double beta2 = 4.0;               /// Steepness of curve; damage2
+const double beta1 = 6.0;               /// Steepness of curve; damage1
+const double beta2 = 6.0;               /// Steepness of curve; damage2
+const double gamma1 = 1.0;              /// 'Multiplier' of the amount of damage added
+const double gamma2 = 1.0;              /// 'Multiplier' of the amount of damage added
 
 ///
 ///Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
 ///
-const double gene1_Mean = 1.0;  		/// Mean of norm. dist. of gene 1
+const double gene1_Mean = 0.0;  		/// Mean of norm. dist. of gene 1
 const double gene2_Mean	= 0.0;		    /// Mean of norm. dist. of gene 2
 const double gene3_Mean	= 0.0;		    /// Mean of norm. dist. of gene 3
 const double gene4_Mean	= 0.0;		    /// Mean of norm. dist. of gene 4
