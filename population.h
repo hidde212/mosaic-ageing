@@ -27,6 +27,7 @@ public:
 	void calcMeanStdDev();			// Calculate means and stddev of genes, damage, age and LRS.
 	void writeMeanStdDev(std::ofstream &data, int &generation);		// Write data
     void writeFinalPop(std::ofstream &data);
+    void runFinalCohort(std::ofstream &data);
 };
 
 // Initialise population with Individuals

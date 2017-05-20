@@ -8,7 +8,7 @@
 ///Global variables
 const unsigned popSize = 5000;			/// (Initial) generation size
 const double extDeathRate = 0.01;	    /// Fraction individuals who die each timestep, extrinsic death
-const int maxGens = 100000;				/// Maximum amount of generation allowed per simulation
+const int maxGens = 25000;				/// Maximum amount of generation allowed per simulation
 const int seed = 0;                     /// Seed. When 0, random seed is created.
 const double f_c = 4.0;					/// Determining steepness of fecundity curve
 const int skip = 250;                   /// To write output data at every $skip generations
@@ -18,10 +18,10 @@ const unsigned traitsNo = 2;            /// amount of traits
 const unsigned dataMeansNo = 8;	        /// amount of data of which the mean and stddev is collected (genes x4, damage x2, age, LRS)
 
 ///Parameters for mortality curves
-const double alpha1 = 10.0;             /// Displacement of curve over x-axis; damage1
-const double alpha2 = 10.0;             /// Displacement of curve over x-axis; damage2
-const double beta1 = 6.0;               /// Steepness of curve; damage1
-const double beta2 = 6.0;               /// Steepness of curve; damage2
+const double alpha1 = 8.0;             /// Displacement of curve over x-axis; damage1
+const double alpha2 = 8.0;             /// Displacement of curve over x-axis; damage2
+const double beta1 = 4.0;               /// Steepness of curve; damage1
+const double beta2 = 4.0;               /// Steepness of curve; damage2
 const double gamma1 = 1.0;              /// 'Multiplier' of the amount of damage added
 const double gamma2 = 1.0;              /// 'Multiplier' of the amount of damage added
 

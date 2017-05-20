@@ -19,9 +19,10 @@ int main(){
 		long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
 
         string timeNow = getTimeDate();		
-        std::ofstream params("parameter" + timeNow + ".txt");
-		std::ofstream means_data("means" + timeNow + ".csv");
-        std::ofstream final("finalpop" + timeNow + ".csv");
+        ofstream params("parameter" + timeNow + ".txt");
+		ofstream means_data("means" + timeNow + ".csv");
+        ofstream final("finalpop" + timeNow + ".csv");
+        ofstream lastCohort("last_cohort"+ timeNow + ".csv");
 
         const int width = 15;
         params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl
@@ -47,7 +48,7 @@ int main(){
 
 		Population pop;
         int time = 0;
-//		boost::progress_display show_progress(maxGens);
+		boost::progress_display show_progress(maxGens);
         pop.init();
         while (time < maxGens) {
             pop.advance();
@@ -57,9 +58,10 @@ int main(){
                 pop.writeMeanStdDev(means_data, time);
             }
             ++time;
-//			++show_progress;
+			++show_progress;
         }
         pop.writeFinalPop(final);
+        pop.runFinalCohort(lastCohort);
 		long hours, minutes, seconds, secondsTotal, timeElapsed = (clock() - starttime) / double(CLOCKS_PER_SEC) * 1000;
 		secondsTotal = timeElapsed / 1000;
 		minutes = secondsTotal / 60;
@@ -71,15 +73,15 @@ int main(){
 
     catch (exception &error) {
         cerr << error.what();
-        std::cin.ignore(1024, '\n');
-        std::cout << "Press enter to continue...";
-        std::cin.get();
+        cin.ignore(1024, '\n');
+        cout << "Press enter to continue...";
+        cin.get();
         exit(EXIT_FAILURE);
     }
 
-//    std::cin.ignore(1024, '\n');
-//    std::cout << "Press enter to continue...";
-//    std::cin.get();
+//    cin.ignore(1024, '\n');
+//    cout << "Press enter to continue...";
+//    cin.get();
 	return 0;
 };
 
@@ -92,7 +94,7 @@ string getTimeDate() {
     timeinfo = localtime(&rawtime);
 
     strftime(buffer,sizeof(buffer),"%Y%m%d_%H-%M-%S",timeinfo);
-    std::string str(buffer);
+    string str(buffer);
 
     return ("_"+ str);
 }

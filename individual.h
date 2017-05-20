@@ -27,7 +27,7 @@ public:
 
 	// Update and set functions:
 	void mutate();							// Mutate with parameters given
-	bool kill();							// Determine if individual is killed and return this
+	bool kill();							// Determine if individual is killed and returns true if alive
 	void calcResources();					// Calculate offspring(fecundity) and repair resources, add damage
 	genome setGenes();						// Return array of genes with normal(geneMean, geneStdDev)
 

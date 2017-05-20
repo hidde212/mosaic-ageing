@@ -99,3 +99,24 @@ void Population::reproduceFromAll(){
         }
     }
 };
+
+void Population::runFinalCohort(std::ofstream &data) {
+    data << "individual," << "deathcause," << "gene1," << "gene2," << "gene3," << "gene4," << "damage1," << "damage2,"
+         << "age," << "LRS" << std::endl;
+    int aliveTotal;
+    do {
+        aliveTotal = 0;
+
+        for (size_t i = 0; i < cohort.size(); ++i) {
+            cohort[i].calcResources();
+            if(!cohort[i].kill()) {
+                data << i << "," << cohort[i].getDeathcause() << ",";
+                for(size_t j = 0; j < genesNo; ++j) data << cohort[i].getGenome()[j] << ",";
+                data << cohort[i].getDamages()[0] << "," << cohort[i].getDamages()[1] << "," << cohort[i].getAge()
+                     << "," << cohort[i].getLRS() << std::endl;
+            }
+
+            aliveTotal += cohort[i].isAlive();
+        }
+    } while (aliveTotal);
+}
