@@ -8,7 +8,8 @@
 
 using namespace std;
 
-string getTimeDate(); /// Function to get time and date in string form
+string getTimeDate();														/// Function to get time and date in string form
+void writeOutput(ofstream &params, ofstream &means, ofstream &rparams);		/// Function writing output files
 
 //
 // Main program
@@ -19,36 +20,20 @@ int main(){
 		long actualSeed = randomize(); //when seed = 0 (in globals.h), a new random seed is set.
 
         string timeNow = getTimeDate();		
-        ofstream params("parameter" + timeNow + ".txt");
+		ofstream params("parameter" + timeNow + ".txt");
 		ofstream means_data("means" + timeNow + ".csv");
         ofstream final("finalpop" + timeNow + ".csv");
         ofstream lastCohort("last_cohort"+ timeNow + ".csv");
-
-        const int width = 15;
-        params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl
-               << "Population size: " << popSize << setw(width) << "/// (Initial) generation size " << endl
-               << "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
-               << "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" <<  endl << endl
-               << "Skip: " << skip << setw(width) << "/// To write output data at every $skip generations" << endl
-               << "alpha1: " << alpha1 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
-               << "alpha2: " << alpha2 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
-               << "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage1" << endl
-               << "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage1" << endl << endl;
-
-        for (size_t i = 0; i < genesNo; ++i) {
-            params << "Gene  "<< i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]
-                 << endl << "Mutation rate: " << mutRates[i] << endl << "Mutation Stddev: " << mutStdDevs[i] << endl << endl;
-        }
-
-        means_data << "Seed: ," << actualSeed << endl;
-        means_data << "generation,"  << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
-                   << "g4mean," << "g4stddev," << "d1mean," << "d1stddev," << "d2mean," << "d2stddev,"
-                   << "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
-
-
+		ofstream paramsR("parameter" + timeNow + ".R");
+		params << "Parameters: " << endl << "Seed: " << actualSeed << endl << endl;
+		means_data << "Seed: ," << actualSeed << endl;
+		paramsR << "seed <- " << actualSeed << endl;
+		
+		writeOutput(params, means_data, paramsR);
+		
 		Population pop;
         int time = 0;
-		boost::progress_display show_progress(maxGens);
+		//boost::progress_display show_progress(maxGens);
         pop.init();
         while (time < maxGens) {
             pop.advance();
@@ -58,7 +43,7 @@ int main(){
                 pop.writeMeanStdDev(means_data, time);
             }
             ++time;
-			++show_progress;
+			//++show_progress;
         }
         pop.writeFinalPop(final);
         pop.runFinalCohort(lastCohort);
@@ -73,9 +58,9 @@ int main(){
 
     catch (exception &error) {
         cerr << error.what();
-        cin.ignore(1024, '\n');
-        cout << "Press enter to continue...";
-        cin.get();
+        //cin.ignore(1024, '\n');
+        //cout << "Press enter to continue...";
+        //cin.get();
         exit(EXIT_FAILURE);
     }
 
@@ -97,4 +82,33 @@ string getTimeDate() {
     string str(buffer);
 
     return ("_"+ str);
+}
+
+void writeOutput(ofstream &params, ofstream &means, ofstream &rparams) {
+	const int width = 25;
+	params << "Population size: " << popSize << setw(width) << "/// (Initial) generation size " << endl
+		<< "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
+		<< "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" << endl << endl
+		<< "Skip: " << skip << setw(width) << "/// To write output data at every $skip generations" << endl
+		<< "alpha1: " << alpha1 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
+		<< "alpha2: " << alpha2 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
+		<< "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage1" << endl
+		<< "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage1" << endl << endl;
+
+	rparams << "popsize <- " << popSize << endl << "gens <- " << maxGens << endl << "extDeathRate <- " << extDeathRate << endl
+		<< "alpha1 <- " << alpha1 << endl << "alpha2 <- " << alpha2 << endl << "beta1 <- " << beta1 << endl << "beta2 <- " << beta2 << endl;
+
+	for (size_t i = 0; i < genesNo; ++i) {
+		params << "Gene  " << i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]
+			<< endl << "Mutation rate: " << mutRates[i] << endl << "Mutation Stddev: " << mutStdDevs[i] << endl << endl;
+		
+		rparams << "gene" << i << "mean <- " << genesMean[i] << endl << "gene" << i << "stddev <- " << genesStdDev[i]
+			<< endl << "gene" << i << "mutRate <- " << mutRates[i] << endl << "gene" << i << "mutStddev <- " << mutStdDevs[i] << endl;
+
+	}
+	
+	means << "generation," << "g1mean," << "g1stddev," << "g2mean," << "g2stddev," << "g3mean," << "g3stddev,"
+		<< "g4mean," << "g4stddev," << "d1mean," << "d1stddev," << "d2mean," << "d2stddev,"
+		<< "agemean," << "agestddev," << "LRSmean," << "LRSstddev" << endl;
+
 }
