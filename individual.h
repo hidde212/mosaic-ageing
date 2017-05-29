@@ -89,8 +89,8 @@ inline void Individual::calcResources() {
     lifetimeRS += fecundity;
 
 	double repairTrait1 = 1 / (1 + exp(-genes[2] * ((damages[0] - damages[1]) / damTot) + genes[3]));
-	damages[0] += gamma1 * offspringAlloc * (1.0 - repairTrait1); // repair allocation = 1 - offspring; thus "damage allocation" = offspringAlloc
-	damages[1] += gamma2 * offspringAlloc * repairTrait1;
+	damages[0] += baseDam + (gamma1 * offspringAlloc * (1.0 - repairTrait1));   // repair allocation = 1 - offspring; thus "damage allocation" = offspringAlloc
+	damages[1] += baseDam + (gamma2 * offspringAlloc * repairTrait1);           // baseDam added
 	for (auto& dam : damages) if (dam > 1.0) dam = 1.0;				// Make sure damage is not above 1.0
 };
 
