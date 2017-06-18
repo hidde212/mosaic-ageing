@@ -90,13 +90,16 @@ void writeOutput(ofstream &params, ofstream &means, ofstream &rparams) {
 		<< "Generations: " << maxGens << setw(width) << "/// Maximum amount of generation allowed per simulation" << endl
 		<< "Extrinsic death rate: " << extDeathRate << setw(width) << "/// Fraction individuals who die each timestep, extrinsic death" << endl << endl
 		<< "Skip: " << skip << setw(width) << "/// To write output data at every $skip generations" << endl
-		<< "alpha1: " << alpha1 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
-		<< "alpha2: " << alpha2 << setw(width) << "/// Displacement of curve over x-axis; damage1" << endl
-		<< "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage1" << endl
-		<< "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage1" << endl << endl;
+		<< "alpha1: " << alpha1 << setw(width) << "/// Displacement of curve over x-axis; damage trait 1" << endl
+		<< "alpha2: " << alpha2 << setw(width) << "/// Displacement of curve over x-axis; damage trait 2" << endl
+		<< "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage trait 1 " << endl
+		<< "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage trait 2" << endl
+           << "gamma1: " << gamma1 << setw(width) << "/// Damage prevention multiplier trait 1" << endl
+           << "gamma2: " << gamma2 << setw(width) << "/// Damage prevention multiplier trait 2" << endl << endl;
 
 	rparams << "popsize <- " << popSize << endl << "gens <- " << maxGens << endl << "extDeathRate <- " << extDeathRate << endl
-		<< "alpha1 <- " << alpha1 << endl << "alpha2 <- " << alpha2 << endl << "beta1 <- " << beta1 << endl << "beta2 <- " << beta2 << endl;
+            << "alpha1 <- " << alpha1 << endl << "alpha2 <- " << alpha2 << endl << "beta1 <- " << beta1 << endl << "beta2 <- "
+            << beta2 << endl << "gamma1 <- " << gamma1 << endl << "gamma2 <- " << gamma2 << endl;
 
 	for (size_t i = 0; i < genesNo; ++i) {
 		params << "Gene  " << i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]

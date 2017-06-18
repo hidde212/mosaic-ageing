@@ -7,7 +7,7 @@
 
 ///Global variables
 const unsigned popSize = 5000;			/// (Initial) generation size
-const double extDeathRate = 0.05;	    /// Fraction individuals who die each timestep, extrinsic death
+const double extDeathRate = 0.2 ;	    /// Fraction individuals who die each timestep, extrinsic death
 const int maxGens = 75000;				/// Maximum amount of generation allowed per simulation
 const int seed = 0;                     /// Seed. When 0, random seed is created.
 const double f_c = 2.0;					/// Determining steepness of fecundity curve
@@ -23,7 +23,7 @@ const double alpha1 = 4.0;             /// Displacement of curve over x-axis; da
 const double alpha2 = 4.0;             /// Displacement of curve over x-axis; damage2
 const double beta1 = 4.0;               /// Steepness of curve; damage1
 const double beta2 = 4.0;               /// Steepness of curve; damage2
-const double gamma1 = 0.4;              /// 'Multiplier' of the amount of damage added
+const double gamma1 = 0.25;              /// 'Multiplier' of the amount of damage added
 const double gamma2 = 0.4;              /// 'Multiplier' of the amount of damage added
 
 ///
