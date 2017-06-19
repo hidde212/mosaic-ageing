@@ -23,8 +23,10 @@ const double alpha1 = 4.0;             /// Displacement of curve over x-axis; da
 const double alpha2 = 4.0;             /// Displacement of curve over x-axis; damage2
 const double beta1 = 4.0;               /// Steepness of curve; damage1
 const double beta2 = 4.0;               /// Steepness of curve; damage2
-const double gamma1 = 0.25;              /// 'Multiplier' of the amount of damage added
+const double gamma1 = 0.4;              /// 'Multiplier' of the amount of damage added
 const double gamma2 = 0.4;              /// 'Multiplier' of the amount of damage added
+const double rho1 = 1.0;                /// Parameter for efficiency of damage prevention to trait 1
+const double rho2 = 0.5;                /// Parameter for efficiency of damage prevention to trait 2
 
 ///
 ///Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
