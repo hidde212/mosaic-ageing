@@ -95,11 +95,14 @@ void writeOutput(ofstream &params, ofstream &means, ofstream &rparams) {
 		<< "beta1: " << beta1 << setw(width) << "/// Steepness of curve; damage trait 1 " << endl
 		<< "beta2: " << beta2 << setw(width) << "/// Steepness of curve; damage trait 2" << endl
            << "gamma1: " << gamma1 << setw(width) << "/// Damage prevention multiplier trait 1" << endl
-           << "gamma2: " << gamma2 << setw(width) << "/// Damage prevention multiplier trait 2" << endl << endl;
+           << "gamma2: " << gamma2 << setw(width) << "/// Damage prevention multiplier trait 2" << endl
+           << "rho1: " << rho1 << setw(width) << "/// Parameter for efficiency of damage prevention to trait 1" << endl
+           << "rho1: " << rho2 << setw(width) << "/// Parameter for efficiency of damage prevention to trait 2" << endl << endl;
 
 	rparams << "popsize <- " << popSize << endl << "gens <- " << maxGens << endl << "extDeathRate <- " << extDeathRate << endl
             << "alpha1 <- " << alpha1 << endl << "alpha2 <- " << alpha2 << endl << "beta1 <- " << beta1 << endl << "beta2 <- "
-            << beta2 << endl << "gamma1 <- " << gamma1 << endl << "gamma2 <- " << gamma2 << endl;
+            << beta2 << endl << "gamma1 <- " << gamma1 << endl << "gamma2 <- " << gamma2 << endl << "rho1 <- " << rho1
+            << endl << "rho2 <- " << rho2 << endl;
 
 	for (size_t i = 0; i < genesNo; ++i) {
 		params << "Gene  " << i << ":" << endl << "Mean: " << genesMean[i] << endl << "Stddev: " << genesStdDev[i]

@@ -26,7 +26,7 @@ const double beta2 = 4.0;               /// Steepness of curve; damage2
 const double gamma1 = 0.4;              /// 'Multiplier' of the amount of damage added
 const double gamma2 = 0.4;              /// 'Multiplier' of the amount of damage added
 const double rho1 = 1.0;                /// Parameter for efficiency of damage prevention to trait 1
-const double rho2 = 0.5;                /// Parameter for efficiency of damage prevention to trait 2
+const double rho2 = 0.0;                /// Parameter for efficiency of damage prevention to trait 2
 
 ///
 ///Parameters for setting Genes from normal distribution (genes vary from -inf to +inf)
