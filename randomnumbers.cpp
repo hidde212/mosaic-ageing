@@ -1,7 +1,5 @@
 #include <iostream>
 #include <chrono>
-//#include <random>
-//#include "globals.h"
 #include "randomnumbers.h"
 
 

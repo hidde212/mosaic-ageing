@@ -3,10 +3,8 @@
 #define MOSAIC_AGEING_POPULATION_H
 
 #include <vector>
-//#include <array>
 #include <fstream>
 #include <stdexcept>
-//#include <iostream>
 #include "individual.h"
 
 

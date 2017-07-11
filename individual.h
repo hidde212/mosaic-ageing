@@ -2,8 +2,6 @@
 #ifndef MOSAIC_AGEING_INDIVIDUAL_H
 #define MOSAIC_AGEING_INDIVIDUAL_H
 
-//#include <array>
-//#include "globals.h"
 #include "randomnumbers.h"
 
 using genome = std::array<double, genesNo>;

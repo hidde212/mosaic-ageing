@@ -58,15 +58,15 @@ int main(){
 
     catch (exception &error) {
         cerr << error.what();
-        //cin.ignore(1024, '\n');
-        //cout << "Press enter to continue...";
-        //cin.get();
+        cin.ignore(1024, '\n');
+        cout << "Press enter to continue...";
+        cin.get();
         exit(EXIT_FAILURE);
     }
 
-//    cin.ignore(1024, '\n');
-//    cout << "Press enter to continue...";
-//    cin.get();
+    cin.ignore(1024, '\n');
+    cout << "Press enter to continue...";
+    cin.get();
 	return 0;
 };
 

@@ -61,6 +61,4 @@ const std::array<double, genesNo> genesStdDev = { { gene1_StdDev, gene2_StdDev, 
 const std::array<double, genesNo> mutRates = { { mutationRate1, mutationRate2, mutationRate3, mutationRate4 } };
 const std::array<double, genesNo> mutStdDevs = { { mutationStddev1, mutationStddev2, mutationStddev3, mutationStddev4 } };
 
-//inline void end_timer (long &startTime, std::ofstream &data) { data << std::endl << "Simulation time: " << (clock()-starttime)/double(CLOCKS_PER_SEC)*1000 << std::endl; };
-
 #endif //MOSAIC_AGEING_GLOBALS_H
